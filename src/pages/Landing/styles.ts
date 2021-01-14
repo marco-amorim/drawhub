@@ -12,4 +12,8 @@ export const LandingImage = styled.img`
 	height: 300px;
 	width: 300px;
 	margin-top: 50px;
+
+	@media (max-width: 480px) {
+		width: 250px;
+	}
 `;
