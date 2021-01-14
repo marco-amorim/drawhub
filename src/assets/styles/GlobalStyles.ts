@@ -37,5 +37,7 @@ export const GlobalStyles = createGlobalStyle`
   body {
     background-color: var(--background);
     color: var(--text-white);
+    font-family: 'Source Code Pro', monospace;
+    font-size: 1rem;
   }
 `;
