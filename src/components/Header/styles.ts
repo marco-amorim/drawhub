@@ -40,8 +40,8 @@ export const HeaderLink = styled.div`
 		padding: 3px;
 		height: 45px;
 		width: 180px;
-    font: bold 1.2rem Source Code Pro;
-    transition: background-color 0.2s;
+		font: bold 1.2rem Source Code Pro;
+		transition: background-color 0.2s;
 	}
 
 	a:hover {
