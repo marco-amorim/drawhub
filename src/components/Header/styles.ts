@@ -12,6 +12,8 @@ export const HeaderStyles = styled.header`
 `;
 
 export const HeaderTitle = styled.h1`
+	font: bold 2.5rem Source Code Pro;
+
 	a {
 		color: var(--green);
 		text-decoration: none;

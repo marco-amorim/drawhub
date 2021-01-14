@@ -6,17 +6,17 @@ class Header extends Component {
 		return (
 			<HeaderStyles>
 				<HeaderLink>
-					<a href="/">View Drawings</a>
+					<a href="/">view drawings</a>
 				</HeaderLink>
 
 				<HeaderTitle>
 					<a href="/">
-						Draw<span>Hub</span>
+						draw<span>hub</span>
 					</a>
 				</HeaderTitle>
 
 				<HeaderLink>
-					<a href="/">New Post</a>
+					<a href="/">new post</a>
 				</HeaderLink>
 			</HeaderStyles>
 		);
