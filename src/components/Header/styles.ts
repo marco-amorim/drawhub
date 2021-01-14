@@ -6,7 +6,7 @@ export const HeaderStyles = styled.header`
 	justify-content: space-between;
 	margin-top: 20px;
 
-	@media (max-width: 576px) {
+	@media (max-width: 767px) {
 		flex-direction: column;
 	}
 `;
@@ -23,7 +23,7 @@ export const HeaderTitle = styled.h1`
 		color: var(--blue-hover);
 	}
 
-	@media (max-width: 576px) {
+	@media (max-width: 767px) {
 		order: 1;
 	}
 `;
@@ -47,7 +47,7 @@ export const HeaderLink = styled.div`
 		background-color: var(--blue-hover);
 	}
 
-	@media (max-width: 576px) {
+	@media (max-width: 767px) {
 		order: 2;
 		margin-top: 20px;
 	}
