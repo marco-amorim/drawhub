@@ -1,15 +1,23 @@
 import { Component } from 'react';
-import { HeaderButton, HeaderStyles, HeaderTitle } from './styles';
+import { HeaderLink, HeaderStyles, HeaderTitle } from './styles';
 
 class Header extends Component {
 	render() {
 		return (
 			<HeaderStyles>
-				<HeaderButton href="/">View Drawings</HeaderButton>
-				<HeaderTitle href="/">
-					Draw<span>Hub</span>
+				<HeaderLink>
+					<a href="/">View Drawings</a>
+				</HeaderLink>
+
+				<HeaderTitle>
+					<a href="/">
+						Draw<span>Hub</span>
+					</a>
 				</HeaderTitle>
-				<HeaderButton href="/">New Post</HeaderButton>
+
+				<HeaderLink>
+					<a href="/">New Post</a>
+				</HeaderLink>
 			</HeaderStyles>
 		);
 	}

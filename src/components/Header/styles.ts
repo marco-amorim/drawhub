@@ -11,13 +11,13 @@ export const HeaderStyles = styled.header`
 	}
 `;
 
-export const HeaderTitle = styled.a`
-	color: var(--green);
-	text-decoration: none;
-	font-size: 2rem;
-	font-weight: bold;
+export const HeaderTitle = styled.h1`
+	a {
+		color: var(--green);
+		text-decoration: none;
+	}
 
-	span {
+	a span {
 		color: var(--blue-hover);
 	}
 
@@ -26,25 +26,27 @@ export const HeaderTitle = styled.a`
 	}
 `;
 
-export const HeaderButton = styled.a`
-	background-color: var(--blue);
-	color: var(--green);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	text-decoration: none;
-	border-radius: 5px;
-	padding: 3px;
-	height: 45px;
-	width: 180px;
-	font: bold 1.2rem Source Code Pro;
+export const HeaderLink = styled.div`
+	a {
+		background-color: var(--blue);
+		color: var(--green);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-decoration: none;
+		border-radius: 5px;
+		padding: 3px;
+		height: 45px;
+		width: 180px;
+		font: bold 1.2rem Source Code Pro;
+	}
 
-	&:hover {
+	a:hover {
 		background-color: var(--blue-hover);
 	}
 
 	@media (max-width: 576px) {
-    order: 2;
-    margin-top: 20px;
+		order: 2;
+		margin-top: 20px;
 	}
 `;
