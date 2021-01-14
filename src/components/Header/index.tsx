@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { HeaderLink, HeaderStyles, HeaderTitle } from './styles';
 
 class Header extends Component {
@@ -6,17 +7,17 @@ class Header extends Component {
 		return (
 			<HeaderStyles>
 				<HeaderLink>
-					<a href="/">view drawings</a>
+					<Link to="/drawings">view drawings</Link>
 				</HeaderLink>
 
 				<HeaderTitle>
-					<a href="/">
+					<Link to="/">
 						draw<span>hub</span>
-					</a>
+					</Link>
 				</HeaderTitle>
 
 				<HeaderLink>
-					<a href="/">new post</a>
+					<Link to="/post/new">new post</Link>
 				</HeaderLink>
 			</HeaderStyles>
 		);
