@@ -5,7 +5,7 @@ import landingImage from '../../assets/images/landing.svg';
 const Landing = () => {
 	return (
 		<LandingStyles>
-			embrace your creativity
+			Embrace your creativity
 			<LandingImage src={landingImage} alt="At" />
 		</LandingStyles>
 	);

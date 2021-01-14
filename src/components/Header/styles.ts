@@ -37,7 +37,6 @@ export const HeaderLink = styled.div`
 		justify-content: center;
 		text-decoration: none;
 		border-radius: 5px;
-		padding: 3px;
 		height: 45px;
 		width: 180px;
 		font: bold 1.2rem Source Code Pro;
