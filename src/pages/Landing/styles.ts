@@ -9,11 +9,13 @@ export const LandingStyles = styled.section`
 `;
 
 export const LandingImage = styled.img`
-	height: 300px;
-	width: 300px;
-	margin-top: 50px;
+	height: 350px;
+	width: 350px;
+	margin-top: 100px;
 
 	@media (max-width: 480px) {
-		width: 250px;
+		height: 275px;
+		width: 275px;
+		margin-top: 50px;
 	}
 `;
