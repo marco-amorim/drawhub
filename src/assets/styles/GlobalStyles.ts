@@ -11,7 +11,6 @@ export const GlobalStyles = createGlobalStyle`
     --color-shape: #202024;
     --color-shape-hover: #29292e;
     --color-borders: #323238;
-    width: 100%;
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
