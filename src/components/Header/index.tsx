@@ -7,17 +7,17 @@ class Header extends Component {
 		return (
 			<HeaderStyles>
 				<HeaderLink>
-					<Link to="/drawings">view drawings</Link>
+					<Link to="/drawings">View Drawings</Link>
 				</HeaderLink>
 
 				<HeaderTitle>
 					<Link to="/">
-						draw<span>hub</span>
+						Draw<span>hub</span>
 					</Link>
 				</HeaderTitle>
 
 				<HeaderLink>
-					<Link to="/post/new">new post</Link>
+					<Link to="/post/new">New Post</Link>
 				</HeaderLink>
 			</HeaderStyles>
 		);

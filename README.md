@@ -1,3 +1,3 @@
-# drawhub
+# Drawhub
 
-- drawhub is a online platform to share your drawings and meet artists
+- Drawhub is a online platform to share your drawings and meet artists
