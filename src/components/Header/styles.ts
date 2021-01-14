@@ -5,9 +5,11 @@ export const HeaderStyles = styled.header`
 	align-items: center;
 	justify-content: space-between;
 	margin-top: 20px;
+	margin-bottom: 125px;
 
 	@media (max-width: 767px) {
 		flex-direction: column;
+		margin-bottom: 75px;
 	}
 `;
 

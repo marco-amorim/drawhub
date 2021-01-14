@@ -5,7 +5,6 @@ export const LandingStyles = styled.section`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	margin-top: 75px;
 `;
 
 export const LandingImage = styled.img`
