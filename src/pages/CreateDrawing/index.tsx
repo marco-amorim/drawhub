@@ -18,20 +18,6 @@ const CreateDrawing = () => {
 			<h3>Create your post</h3>
 
 			<Form onSubmit={handleSubmit}>
-				<FormLabel htmlFor="imageUrl">Image URL</FormLabel>
-				<FormInput
-					type="text"
-					id="imageUrl"
-					onChange={(e) => setImageUrl(e.target.value)}
-				/>
-
-				<FormLabel htmlFor="email">E-mail</FormLabel>
-				<FormInput
-					type="text"
-					id="email"
-					onChange={(e) => setEmail(e.target.value)}
-				/>
-
 				<FormLabel htmlFor="author">Author</FormLabel>
 				<FormInput
 					type="text"
@@ -39,11 +25,25 @@ const CreateDrawing = () => {
 					onChange={(e) => setAuthor(e.target.value)}
 				/>
 
+				<FormLabel htmlFor="imageUrl">Image URL</FormLabel>
+				<FormInput
+					type="text"
+					id="imageUrl"
+					onChange={(e) => setImageUrl(e.target.value)}
+				/>
+
 				<FormLabel htmlFor="description">Description</FormLabel>
 				<FormInput
 					type="text"
 					id="description"
 					onChange={(e) => setDescription(e.target.value)}
+				/>
+
+				<FormLabel htmlFor="email">E-mail</FormLabel>
+				<FormInput
+					type="text"
+					id="email"
+					onChange={(e) => setEmail(e.target.value)}
 				/>
 
 				<FormButton type="submit">Submit</FormButton>
