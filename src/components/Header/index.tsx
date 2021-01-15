@@ -1,25 +1,18 @@
 import { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { HeaderLink, HeaderStyles, HeaderTitle } from './styles';
+import { HeaderLink, HeaderContainer, HeaderTitle } from './styles';
 
 class Header extends Component {
 	render() {
 		return (
-			<HeaderStyles>
-				<HeaderLink>
-					<Link to="/drawings">View Drawings</Link>
-				</HeaderLink>
+			<HeaderContainer>
+				<HeaderLink to="/drawings">View Drawings</HeaderLink>
 
-				<HeaderTitle>
-					<Link to="/">
-						Draw<span>hub</span>
-					</Link>
+				<HeaderTitle to="/">
+					Draw<span>hub</span>
 				</HeaderTitle>
 
-				<HeaderLink>
-					<Link to="/post/new">New Post</Link>
-				</HeaderLink>
-			</HeaderStyles>
+				<HeaderLink to="/post/new">New Post</HeaderLink>
+			</HeaderContainer>
 		);
 	}
 }

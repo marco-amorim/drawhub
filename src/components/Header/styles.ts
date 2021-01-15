@@ -1,10 +1,11 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const HeaderStyles = styled.header`
+export const HeaderContainer = styled.header`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	margin-top: 20px;
+	margin-top: 30px;
 	margin-bottom: 125px;
 
 	@media (max-width: 767px) {
@@ -13,15 +14,11 @@ export const HeaderStyles = styled.header`
 	}
 `;
 
-export const HeaderTitle = styled.h1`
+export const HeaderTitle = styled(Link)`
 	font: bold 2.5rem Source Code Pro;
-
-	a {
-		color: var(--green);
-		text-decoration: none;
-	}
-
-	a span {
+	color: var(--green);
+	text-decoration: none;
+	span {
 		color: var(--blue-hover);
 	}
 
@@ -30,22 +27,20 @@ export const HeaderTitle = styled.h1`
 	}
 `;
 
-export const HeaderLink = styled.div`
-	a {
-		background-color: var(--blue);
-		color: var(--green);
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		text-decoration: none;
-		border-radius: 5px;
-		height: 45px;
-		width: 180px;
-		font: bold 1.2rem Source Code Pro;
-		transition: background-color 0.2s;
-	}
+export const HeaderLink = styled(Link)`
+	background-color: var(--blue);
+	color: var(--green);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
+	border-radius: 5px;
+	height: 45px;
+	width: 180px;
+	font: bold 1.2rem Source Code Pro;
+	transition: background-color 0.2s;
 
-	a:hover {
+	&:hover {
 		background-color: var(--blue-hover);
 	}
 
