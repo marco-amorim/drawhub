@@ -3,6 +3,9 @@ import { BrowserRouter } from 'react-router-dom';
 import { GlobalStyles } from '../../assets/styles/GlobalStyles';
 import Header from '../Header';
 import Routes from '../Routes';
+import initializeFirebase from '../../services/firebase';
+
+initializeFirebase();
 
 const App = () => {
 	return (

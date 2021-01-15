@@ -3,6 +3,8 @@ import * as Yup from 'yup';
 import { FormikValues, Formik } from 'formik';
 
 import { MuiButton, FormikInput, FormikForm } from './styles';
+import { useHistory } from 'react-router-dom';
+import postDrawing from '../../../services/postDrawing';
 
 interface FormValues {
 	author: string;
@@ -28,8 +30,12 @@ const CreateDrawingSchema = Yup.object().shape({
 });
 
 const DrawingForm: React.FC = () => {
-	const handleSubmit = (values: FormikValues) => {
-		console.log(values);
+	const history = useHistory();
+
+	const handleSubmit = async (values: FormikValues) => {
+		await postDrawing(values);
+
+		history.push('/');
 	};
 
 	return (
