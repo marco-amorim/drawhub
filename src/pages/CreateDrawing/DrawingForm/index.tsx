@@ -1,8 +1,8 @@
 import React from 'react';
 import * as Yup from 'yup';
-import { Form, FormikValues } from 'formik';
+import { FormikValues, Formik } from 'formik';
 
-import { FormikValidation, FormButton, FormInput } from './styles';
+import { FormButton, FormInput, FormikForm } from './styles';
 
 interface FormValues {
 	author: string;
@@ -36,14 +36,14 @@ const DrawingForm: React.FC = () => {
 		<React.Fragment>
 			<h3>Create your post</h3>
 
-			<FormikValidation
+			<Formik
 				initialValues={initialValues}
 				onSubmit={handleSubmit}
 				validationSchema={CreateDrawingSchema}
 			>
 				{({ dirty, isValid }) => {
 					return (
-						<Form>
+						<FormikForm>
 							<FormInput name="author" label="Author" required />
 							<FormInput name="imageUrl" label="Image URL" required />
 							<FormInput name="description" label="Description" required />
@@ -55,10 +55,10 @@ const DrawingForm: React.FC = () => {
 							>
 								Submit
 							</FormButton>
-						</Form>
+						</FormikForm>
 					);
 				}}
-			</FormikValidation>
+			</Formik>
 		</React.Fragment>
 	);
 };

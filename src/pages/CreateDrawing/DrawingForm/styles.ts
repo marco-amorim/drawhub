@@ -1,9 +1,9 @@
-import { Formik } from 'formik';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import FormikField from '../FormikField';
+import { Form } from 'formik';
 
-export const FormikValidation = styled(Formik)`
+export const FormikForm = styled(Form)`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
