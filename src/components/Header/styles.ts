@@ -19,7 +19,7 @@ export const HeaderTitle = styled(Link)`
 	color: var(--green);
 	text-decoration: none;
 	span {
-		color: var(--blue-hover);
+		color: var(--blue-light);
 	}
 
 	@media (max-width: 767px) {
@@ -41,7 +41,7 @@ export const HeaderLink = styled(Link)`
 	transition: background-color 0.2s;
 
 	&:hover {
-		background-color: var(--blue-hover);
+		background-color: var(--blue-light);
 	}
 
 	@media (max-width: 767px) {
