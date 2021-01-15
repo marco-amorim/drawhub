@@ -33,6 +33,10 @@ export const GlobalStyles = createGlobalStyle`
     }
   }
 
+  h3 {
+    text-align: center;
+  }
+
   body {
     background-color: var(--black);
     color: var(--white);

@@ -5,11 +5,7 @@ export const Form = styled.form`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-`;
-
-export const FormTitle = styled.h2`
-	text-align: center;
-	margin-bottom: 3rem;
+	margin-top: 3rem;
 `;
 
 export const FormLabel = styled.label`
@@ -23,7 +19,7 @@ export const FormInput = styled.input`
 	border-radius: 5px;
 	outline: none;
 	border: 3px solid var(--blue-light);
-  padding: 0px 5px;
+	padding: 0px 5px;
 `;
 
 export const FormButton = styled.button`
