@@ -41,6 +41,9 @@ export const MuiTheme = createMuiTheme({
 				color: '#e1e1e6',
 				fontSize: '1rem',
 				fontFamily: 'Source Code Pro',
+				'&$focused': {
+					color: '#04d361',
+				},
 			},
 		},
 	},
