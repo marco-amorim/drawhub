@@ -1,5 +1,5 @@
 import { Route } from 'react-router-dom';
-import CreateDrawing from '../../pages/CreateDrawing';
+import DrawingForm from '../../pages/CreateDrawing/DrawingForm';
 import Drawings from '../../pages/Drawings';
 import Landing from '../../pages/Landing';
 
@@ -8,7 +8,7 @@ const Routes = () => {
 		<>
 			<Route component={Landing} exact path="/" />
 			<Route component={Drawings} path="/drawings" />
-			<Route component={CreateDrawing} path="/post/new" />
+			<Route component={DrawingForm} path="/post/new" />
 		</>
 	);
 };
