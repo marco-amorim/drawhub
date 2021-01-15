@@ -4,10 +4,12 @@ import landingImage from '../../assets/images/landing.svg';
 
 const Landing = () => {
 	return (
-		<LandingStyles>
+		<React.Fragment>
 			<h3>Embrace your creativity</h3>
-			<LandingImage src={landingImage} alt="At" />
-		</LandingStyles>
+			<LandingStyles>
+				<LandingImage src={landingImage} alt="At" />
+			</LandingStyles>
+		</React.Fragment>
 	);
 };
 

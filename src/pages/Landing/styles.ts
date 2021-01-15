@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const LandingStyles = styled.section`
+export const LandingStyles = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
