@@ -4,10 +4,6 @@ import FormikField from '../FormikField';
 import { Form } from 'formik';
 
 export const FormikForm = styled(Form)`
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
 	margin: 3rem 0;
 `;
 
