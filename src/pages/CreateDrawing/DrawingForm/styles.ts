@@ -7,11 +7,7 @@ export const FormikForm = styled(Form)`
 	margin: 3rem 0;
 `;
 
-export const FormLabel = styled.label`
-	color: var(--green);
-`;
-
-export const FormInput = styled(FormikField)`
+export const FormikInput = styled(FormikField)`
 	&& {
 		margin: 20px 0px;
 		width: 290px;
@@ -23,7 +19,7 @@ export const FormInput = styled(FormikField)`
 	}
 `;
 
-export const FormButton = styled(Button)`
+export const MuiButton = styled(Button)`
 	&& {
 		margin-top: 2rem;
 		width: 190px !important;

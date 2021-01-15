@@ -2,7 +2,7 @@ import React from 'react';
 import * as Yup from 'yup';
 import { FormikValues, Formik } from 'formik';
 
-import { FormButton, FormInput, FormikForm } from './styles';
+import { MuiButton, FormikInput, FormikForm } from './styles';
 
 interface FormValues {
 	author: string;
@@ -44,17 +44,17 @@ const DrawingForm: React.FC = () => {
 				{({ dirty, isValid }) => {
 					return (
 						<FormikForm>
-							<FormInput name="author" label="Author" required />
-							<FormInput name="imageUrl" label="Image URL" required />
-							<FormInput name="description" label="Description" required />
-							<FormInput name="email" label="E-mail" required />
-							<FormButton
+							<FormikInput name="author" label="Author" required />
+							<FormikInput name="imageUrl" label="Image URL" required />
+							<FormikInput name="description" label="Description" required />
+							<FormikInput name="email" label="E-mail" required />
+							<MuiButton
 								disabled={!dirty || !isValid}
 								type="submit"
 								disableRipple
 							>
 								Submit
-							</FormButton>
+							</MuiButton>
 						</FormikForm>
 					);
 				}}
