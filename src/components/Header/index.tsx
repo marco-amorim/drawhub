@@ -1,20 +1,42 @@
-import { Component } from 'react';
-import { HeaderLink, HeaderContainer, HeaderTitle } from './styles';
+import {
+	HeaderLink,
+	HeaderContainer,
+	HeaderTitle,
+	HeaderButton,
+} from './styles';
+import { isLogged, signInWithGoogle, signOut } from '../../services/firebase';
+import { CircularProgress } from '@material-ui/core';
 
-class Header extends Component {
-	render() {
-		return (
-			<HeaderContainer>
-				<HeaderLink to="/drawings">View Drawings</HeaderLink>
+const Header = () => {
+	const { user, loading } = isLogged();
 
-				<HeaderTitle to="/">
-					Draw<span>hub</span>
-				</HeaderTitle>
+	const renderMenu = () => {
+		if (user) {
+			return <HeaderButton onClick={signOut}>Logout</HeaderButton>;
+		}
 
-				<HeaderLink to="/post/new">New Post</HeaderLink>
-			</HeaderContainer>
-		);
-	}
-}
+		return <HeaderButton onClick={signInWithGoogle}>Login</HeaderButton>;
+	};
+
+	return (
+		<HeaderContainer>
+			<HeaderLink to="/drawings">View Drawings</HeaderLink>
+
+			<HeaderTitle to="/">
+				Draw<span>hub</span>
+			</HeaderTitle>
+
+			{loading ? (
+				<HeaderButton disabled={true} style={{ pointerEvents: 'none' }}>
+					<CircularProgress
+						style={{ color: '#04d361', height: '35px', width: '35px' }}
+					/>
+				</HeaderButton>
+			) : (
+				renderMenu()
+			)}
+		</HeaderContainer>
+	);
+};
 
 export default Header;

@@ -1,8 +1,11 @@
 import firebase from 'firebase/app';
 import 'firebase/database';
+import 'firebase/auth';
+import 'firebase/firestore';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
-const initializeFirebase = () => {
-	const config = {
+export const initializeFirebase = () => {
+	const firebaseConfig = {
 		apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
 		authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
 		projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
@@ -12,7 +15,26 @@ const initializeFirebase = () => {
 		measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 	};
 
-	firebase.initializeApp(config);
+	firebase.initializeApp(firebaseConfig);
 };
 
-export default initializeFirebase;
+export const isLogged = () => {
+	const auth = firebase.auth();
+	// eslint-disable-next-line react-hooks/rules-of-hooks
+	const [user, loading] = useAuthState(auth);
+
+	return { user, loading };
+};
+
+export const signInWithGoogle = () => {
+	const auth = firebase.auth();
+
+	const provider = new firebase.auth.GoogleAuthProvider();
+	auth.signInWithPopup(provider);
+};
+
+export const signOut = () => {
+	const auth = firebase.auth();
+
+	return auth.signOut();
+};
