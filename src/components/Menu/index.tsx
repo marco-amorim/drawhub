@@ -15,6 +15,8 @@ const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		root: {
 			display: 'flex',
+			paddingLeft: '49.5px',
+			paddingRight: '49.5px',
 			'@media (max-width: 767px)': {
 				marginTop: '20px',
 			},

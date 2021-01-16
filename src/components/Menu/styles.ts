@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 
 export const MenuTrigger = styled(Button)`
-	color: white;
-	width: 180px;
 	height: 45px;
 
 	img {
