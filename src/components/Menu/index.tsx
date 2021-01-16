@@ -9,6 +9,7 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { ArrowDropDown } from '@material-ui/icons';
 import { MenuTrigger } from './styles';
 import { signOut } from '../../services/firebase';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -32,6 +33,7 @@ const Menu: React.FC<MenuProps> = ({ photoURL }) => {
 	const classes = useStyles();
 	const [open, setOpen] = React.useState(false);
 	const anchorRef = React.useRef<HTMLButtonElement>(null);
+	const history = useHistory();
 
 	const handleToggle = () => {
 		setOpen((prevOpen) => !prevOpen);
@@ -53,8 +55,13 @@ const Menu: React.FC<MenuProps> = ({ photoURL }) => {
 		handleClose(event);
 	};
 
-	const openSourceCode = (event: React.MouseEvent<EventTarget>) => {
+	const navigateToSourceCode = (event: React.MouseEvent<EventTarget>) => {
 		window.open('https://github.com/marco-amorim/drawhub', '_blank');
+		handleClose(event);
+	};
+
+	const navigateToPostCreation = (event: React.MouseEvent<EventTarget>) => {
+		history.push('/post/new');
 		handleClose(event);
 	};
 
@@ -109,8 +116,13 @@ const Menu: React.FC<MenuProps> = ({ photoURL }) => {
 										id="menu-list-grow"
 										onKeyDown={handleListKeyDown}
 									>
+										<MenuItem
+											onClick={(event) => navigateToPostCreation(event)}
+										>
+											New Post
+										</MenuItem>
 										<MenuItem onClick={handleClose}>My Posts</MenuItem>
-										<MenuItem onClick={(event) => openSourceCode(event)}>
+										<MenuItem onClick={(event) => navigateToSourceCode(event)}>
 											Source Code
 										</MenuItem>
 										<MenuItem onClick={(event) => logout(event)}>
