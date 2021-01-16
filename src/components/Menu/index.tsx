@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			display: 'flex',
 			paddingLeft: '49.5px',
 			paddingRight: '49.5px',
+			zIndex: 5,
 			'@media (max-width: 767px)': {
 				marginTop: '20px',
 			},
