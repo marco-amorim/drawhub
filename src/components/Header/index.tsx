@@ -4,11 +4,11 @@ import {
 	HeaderTitle,
 	HeaderButton,
 } from './styles';
-import { isLogged, signInWithGoogle, signOut } from '../../services/firebase';
+import { getUser, signInWithGoogle, signOut } from '../../services/firebase';
 import { CircularProgress } from '@material-ui/core';
 
 const Header = () => {
-	const { user, loading } = isLogged();
+	const { user, loading } = getUser();
 
 	const renderMenu = () => {
 		if (user) {

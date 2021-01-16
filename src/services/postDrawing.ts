@@ -2,12 +2,12 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import { FormikValues } from 'formik';
 
-const postDrawing = async (values: FormikValues) => {
+const postDrawing = async (formValues: FormikValues) => {
 	const firestore = firebase.firestore();
 	const postsRef = firestore.collection('posts');
 
 	const newPost = {
-		...values,
+		...formValues,
 		createdAt: firebase.firestore.FieldValue.serverTimestamp(),
 	};
 

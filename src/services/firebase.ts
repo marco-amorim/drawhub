@@ -18,7 +18,7 @@ export const initializeFirebase = () => {
 	firebase.initializeApp(firebaseConfig);
 };
 
-export const isLogged = () => {
+export const getUser = () => {
 	const auth = firebase.auth();
 	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const [user, loading] = useAuthState(auth);

@@ -5,7 +5,7 @@ import { FormikValues, Formik } from 'formik';
 import { MuiButton, FormikInput, FormikForm, LoadingContainer } from './styles';
 import { useHistory } from 'react-router-dom';
 import postDrawing from '../../../services/postDrawing';
-import { isLogged } from '../../../services/firebase';
+import { getUser } from '../../../services/firebase';
 import { CircularProgress } from '@material-ui/core';
 
 interface FormValues {
@@ -34,10 +34,12 @@ const CreateDrawingSchema = Yup.object().shape({
 const DrawingForm: React.FC = () => {
 	const history = useHistory();
 
-	const { user, loading } = isLogged();
+	const { user, loading } = getUser();
 
 	const handleSubmit = async (values: FormikValues) => {
-		await postDrawing(values);
+		const { uid, photoURL } = user;
+		const formValues = { ...values, uid, photoURL };
+		await postDrawing(formValues);
 
 		history.push('/');
 	};
