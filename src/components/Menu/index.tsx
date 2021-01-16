@@ -15,11 +15,12 @@ const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		root: {
 			display: 'flex',
-			paddingLeft: '49.5px',
-			paddingRight: '49.5px',
+			paddingLeft: '99px',
 			zIndex: 5,
 			'@media (max-width: 767px)': {
 				marginTop: '20px',
+				paddingLeft: '49.5px',
+				paddingRight: '49.5px',
 			},
 		},
 		paper: {
