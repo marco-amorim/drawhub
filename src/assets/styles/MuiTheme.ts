@@ -46,5 +46,20 @@ export const MuiTheme = createMuiTheme({
 				},
 			},
 		},
+
+		MuiPaper: {
+			root: {
+				color: '#e1e1e6',
+				backgroundColor: '#202024',
+			},
+		},
+
+		MuiListItem: {
+			button: {
+				'&:hover': {
+					backgroundColor: '#29292e',
+				},
+			},
+		},
 	},
 });

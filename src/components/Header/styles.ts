@@ -48,15 +48,27 @@ const buttonStyles = css`
 	}
 
 	@media (max-width: 767px) {
-		order: 1;
 		margin-top: 20px;
+	}
+`;
+
+const orderStyles = css`
+	order: 1;
+	@media (max-width: 767px) {
+		order: 0;
 	}
 `;
 
 export const HeaderLink = styled(Link)`
 	${buttonStyles}
+	order: 0;
+
+	@media (max-width: 767px) {
+		order: 1;
+	}
 `;
 
 export const HeaderButton = styled.button`
 	${buttonStyles}
+	${orderStyles}
 `;

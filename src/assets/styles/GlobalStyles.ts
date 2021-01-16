@@ -8,9 +8,9 @@ export const GlobalStyles = createGlobalStyle`
     --blue-light: #0071bd;
     --blue: #005a96;
     --green: #04d361;
-    --color-shape: #202024;
-    --color-shape-hover: #29292e;
-    --color-borders: #323238;
+    --shape: #202024;
+    --shape-hover: #29292e;
+    --borders: #323238;
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;

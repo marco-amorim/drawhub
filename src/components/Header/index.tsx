@@ -4,16 +4,17 @@ import {
 	HeaderTitle,
 	HeaderButton,
 } from './styles';
-import { getAuth, signInWithGoogle, signOut } from '../../services/firebase';
+import { getAuth, signInWithGoogle } from '../../services/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { CircularProgress } from '@material-ui/core';
+import Menu from '../Menu';
 
 const Header = () => {
 	const [user, loading] = useAuthState(getAuth());
 
 	const renderMenu = () => {
 		if (user) {
-			return <HeaderButton onClick={signOut}>Logout</HeaderButton>;
+			return <Menu photoURL={user.photoURL} />;
 		}
 
 		return <HeaderButton onClick={signInWithGoogle}>Login</HeaderButton>;
