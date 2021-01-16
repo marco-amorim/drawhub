@@ -36,10 +36,10 @@ const DrawingForm: React.FC = () => {
 
 	const { user, loading } = getUser();
 
-	const handleSubmit = async (values: FormikValues) => {
+	const handleSubmit = (values: FormikValues) => {
 		const { uid, photoURL } = user;
 		const formValues = { ...values, uid, photoURL };
-		await postDrawing(formValues);
+		postDrawing(formValues);
 
 		history.push('/');
 	};
