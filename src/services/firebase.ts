@@ -2,7 +2,6 @@ import firebase from 'firebase/app';
 import 'firebase/database';
 import 'firebase/auth';
 import 'firebase/firestore';
-import { useAuthState } from 'react-firebase-hooks/auth';
 
 export const initializeFirebase = () => {
 	const firebaseConfig = {
@@ -18,12 +17,10 @@ export const initializeFirebase = () => {
 	firebase.initializeApp(firebaseConfig);
 };
 
-export const getUser = () => {
+export const getAuth = () => {
 	const auth = firebase.auth();
-	// eslint-disable-next-line react-hooks/rules-of-hooks
-	const [user, loading] = useAuthState(auth);
 
-	return { user, loading };
+	return auth;
 };
 
 export const signInWithGoogle = () => {
