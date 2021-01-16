@@ -25,7 +25,9 @@ const initialValues: FormValues = {
 
 const CreateDrawingSchema = Yup.object().shape({
 	author: Yup.string().required('This field is required'),
-	imageUrl: Yup.string().url('Invalid URL').required('This field is required'),
+	imageUrl: Yup.string()
+		.url('Invalid URL format')
+		.required('This field is required'),
 	description: Yup.string().required('This field is required'),
 	email: Yup.string()
 		.email('Invalid e-mail format')
