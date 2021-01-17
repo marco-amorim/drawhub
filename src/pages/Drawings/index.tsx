@@ -23,7 +23,6 @@ const Drawings = () => {
 								author={post.author}
 								createdAt={post.createdAt}
 								creatorId={post.uid}
-								description={post.description}
 								email={post.email}
 								imageUrl={post.imageUrl}
 								photoUrl={post.photoURL}

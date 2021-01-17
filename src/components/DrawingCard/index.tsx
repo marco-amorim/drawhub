@@ -7,7 +7,6 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { Email, FavoriteBorder } from '@material-ui/icons';
 import DrawingModal from '../DrawingModal';
@@ -46,7 +45,6 @@ interface DrawingCardProps {
 	title: string;
 	author: string;
 	imageUrl: string;
-	description: string;
 	email: string;
 	createdAt: firebase.firestore.Timestamp;
 	creatorId: string;
@@ -57,7 +55,6 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 	title,
 	author,
 	createdAt,
-	description,
 	email,
 	imageUrl,
 	photoUrl,
@@ -82,11 +79,7 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 				subheader={new Date(createdAt.toDate()).toLocaleDateString()}
 			/>
 			<CardMedia className={classes.media} image={imageUrl} title={title} />
-			<CardContent className={classes.body}>
-				<Typography variant="body2" component="p">
-					{description}
-				</Typography>
-			</CardContent>
+
 			<CardContent className={classes.createdBy}>
 				Created by: {author}
 			</CardContent>

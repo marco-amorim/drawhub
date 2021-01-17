@@ -19,8 +19,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 		closeButton: {
 			position: 'absolute',
-			top: '5px',
-			right: '5px',
+			top: '10px',
+			right: '10px',
 		},
 	})
 );

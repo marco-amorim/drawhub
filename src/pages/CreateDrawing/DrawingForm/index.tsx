@@ -13,7 +13,6 @@ interface FormValues {
 	title: string;
 	author: string;
 	imageUrl: string;
-	description: string;
 	email: string;
 }
 
@@ -21,7 +20,6 @@ const initialValues: FormValues = {
 	title: '',
 	author: '',
 	imageUrl: '',
-	description: '',
 	email: '',
 };
 
@@ -31,7 +29,6 @@ const CreateDrawingSchema = Yup.object().shape({
 	imageUrl: Yup.string()
 		.url('Invalid URL format')
 		.required('This field is required'),
-	description: Yup.string().required('This field is required'),
 	email: Yup.string()
 		.email('Invalid e-mail format')
 		.required('This field is required'),
@@ -63,7 +60,6 @@ const DrawingForm: React.FC = () => {
 							<FormikInput name="title" label="Title" required />
 							<FormikInput name="author" label="Author" required />
 							<FormikInput name="imageUrl" label="Image URL" required />
-							<FormikInput name="description" label="Description" required />
 							<FormikInput name="email" label="E-mail" required />
 							<MuiButton
 								disabled={!dirty || !isValid}
