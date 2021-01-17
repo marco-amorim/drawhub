@@ -5,10 +5,8 @@ import { MuiTheme } from './assets/styles/MuiTheme';
 import App from './components/App';
 
 ReactDOM.render(
-	<React.StrictMode>
-		<MuiThemeProvider theme={MuiTheme}>
-			<App />
-		</MuiThemeProvider>
-	</React.StrictMode>,
+	<MuiThemeProvider theme={MuiTheme}>
+		<App />
+	</MuiThemeProvider>,
 	document.getElementById('root')
 );

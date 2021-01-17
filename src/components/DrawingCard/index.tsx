@@ -9,15 +9,20 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { Email, FavoriteBorder, Fullscreen } from '@material-ui/icons';
+import { Email, FavoriteBorder } from '@material-ui/icons';
 import DrawingModal from '../DrawingModal';
+import firebase from 'firebase/app';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		root: {
-			maxWidth: 345,
+			width: 345,
 			backgroundColor: 'var(--shape-hover)',
 			margin: '17px 0px',
+
+			'@media (max-width: 767px)': {
+				width: 310,
+			},
 		},
 		media: {
 			height: 0,
@@ -30,6 +35,10 @@ const useStyles = makeStyles((theme: Theme) =>
 		createdBy: {
 			fontSize: '13px',
 		},
+
+		body: {
+			height: 100,
+		},
 	})
 );
 
@@ -39,7 +48,7 @@ interface DrawingCardProps {
 	imageUrl: string;
 	description: string;
 	email: string;
-	createdAt: Date;
+	createdAt: firebase.firestore.Timestamp;
 	creatorId: string;
 	photoUrl: string;
 }
@@ -60,11 +69,8 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 		<Card className={classes.root}>
 			<CardHeader
 				avatar={
-					<Avatar
-						src="https://avatars2.githubusercontent.com/u/40203788?s=460&u=bb67357c370e74a78cb43239833649004c9212d6&v=4"
-						aria-label="recipe"
-					>
-						R
+					<Avatar src={photoUrl} aria-label="recipe">
+						A
 					</Avatar>
 				}
 				action={
@@ -72,33 +78,32 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 						<MoreVertIcon />
 					</IconButton>
 				}
-				title="Shrimp and Chorizo Paella"
-				subheader="September 14, 2016"
+				title={title}
+				subheader={new Date(createdAt.toDate()).toLocaleDateString()}
 			/>
-			<CardMedia
-				className={classes.media}
-				image="https://i.ytimg.com/vi/PRCDU4GJuyQ/maxresdefault.jpg"
-				title="Paella dish"
-			/>
-			<CardContent>
+			<CardMedia className={classes.media} image={imageUrl} title={title} />
+			<CardContent className={classes.body}>
 				<Typography variant="body2" component="p">
-					This impressive paella is a perfect party dish and a fun meal to cook
-					together with your guests. Add 1 cup of frozen peas along with the
-					mussels, if you like.
+					{description}
 				</Typography>
 			</CardContent>
-			<CardContent className={classes.createdBy}>Created by: Marco</CardContent>
+			<CardContent className={classes.createdBy}>
+				Created by: {author}
+			</CardContent>
 			<CardActions disableSpacing>
 				<IconButton aria-label="add to favorites">
 					<FavoriteBorder />
 				</IconButton>
 				29
 				<div className={classes.rightIcons}>
-					<IconButton aria-label="send email">
+					<IconButton
+						aria-label="send email"
+						onClick={() => window.open('mailto:' + email, '_blank')}
+					>
 						<Email />
 					</IconButton>
 					<IconButton aria-label="full screen">
-						<DrawingModal imageUrl="https://i.ytimg.com/vi/PRCDU4GJuyQ/maxresdefault.jpg" />
+						<DrawingModal imageUrl={imageUrl} />
 					</IconButton>
 				</div>
 			</CardActions>
