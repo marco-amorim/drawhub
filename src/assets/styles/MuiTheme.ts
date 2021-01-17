@@ -76,5 +76,12 @@ export const MuiTheme = createMuiTheme({
 				color: '#e1e1e6',
 			},
 		},
+
+		MuiSvgIcon: {
+			root: {
+				display: 'flex',
+				alignItems: 'center',
+			},
+		},
 	},
 });
