@@ -9,6 +9,8 @@ const postDrawing = async (formValues: FormikValues) => {
 	const newPost = {
 		...formValues,
 		createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+		likes: 0,
+		likedBy: [],
 	};
 
 	try {

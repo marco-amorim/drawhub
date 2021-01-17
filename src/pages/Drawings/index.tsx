@@ -9,6 +9,7 @@ const Drawings = () => {
 			<DrawingsContainer>
 				<li>
 					<DrawingCard
+						title=""
 						author=""
 						createdAt={new Date()}
 						creatorId=""
@@ -21,6 +22,7 @@ const Drawings = () => {
 
 				<li>
 					<DrawingCard
+						title=""
 						author=""
 						createdAt={new Date()}
 						creatorId=""
@@ -32,6 +34,7 @@ const Drawings = () => {
 				</li>
 				<li>
 					<DrawingCard
+						title=""
 						author=""
 						createdAt={new Date()}
 						creatorId=""
@@ -43,6 +46,7 @@ const Drawings = () => {
 				</li>
 				<li>
 					<DrawingCard
+						title=""
 						author=""
 						createdAt={new Date()}
 						creatorId=""

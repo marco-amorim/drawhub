@@ -8,16 +8,16 @@ import CardActions from '@material-ui/core/CardActions';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { Email, Fullscreen } from '@material-ui/icons';
+import { Email, FavoriteBorder, Fullscreen } from '@material-ui/icons';
+import DrawingModal from '../DrawingModal';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		root: {
 			maxWidth: 345,
 			backgroundColor: 'var(--shape-hover)',
-			margin: '15px 0px',
+			margin: '17px 0px',
 		},
 		media: {
 			height: 0,
@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface DrawingCardProps {
+	title: string;
 	author: string;
 	imageUrl: string;
 	description: string;
@@ -44,6 +45,7 @@ interface DrawingCardProps {
 }
 
 const DrawingCard: React.FC<DrawingCardProps> = ({
+	title,
 	author,
 	createdAt,
 	description,
@@ -88,7 +90,7 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 			<CardContent className={classes.createdBy}>Created by: Marco</CardContent>
 			<CardActions disableSpacing>
 				<IconButton aria-label="add to favorites">
-					<FavoriteIcon />
+					<FavoriteBorder />
 				</IconButton>
 				29
 				<div className={classes.rightIcons}>
@@ -96,7 +98,7 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 						<Email />
 					</IconButton>
 					<IconButton aria-label="full screen">
-						<Fullscreen />
+						<DrawingModal imageUrl="https://i.ytimg.com/vi/PRCDU4GJuyQ/maxresdefault.jpg" />
 					</IconButton>
 				</div>
 			</CardActions>

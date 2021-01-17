@@ -6,6 +6,6 @@ export const DrawingsContainer = styled.ul`
 	justify-content: space-between;
 	align-items: center;
 	flex-wrap: wrap;
-	padding: 0px 20px;
+	padding: 0px 10px;
 	margin: 3rem 0px;
 `;
