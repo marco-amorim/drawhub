@@ -10,25 +10,25 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { Fullscreen } from '@material-ui/icons';
+import { Email, Fullscreen } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		root: {
 			maxWidth: 345,
 			backgroundColor: 'var(--shape-hover)',
-			margin: '10px 0px',
+			margin: '15px 0px',
 		},
 		media: {
 			height: 0,
-			paddingTop: '56.25%', // 16:9
+			paddingTop: '56.25%',
 		},
-		fullscreen: {
-			transform: 'rotate(0deg)',
+		rightIcons: {
 			marginLeft: 'auto',
-			transition: theme.transitions.create('transform', {
-				duration: theme.transitions.duration.shortest,
-			}),
+		},
+
+		createdBy: {
+			fontSize: '13px',
 		},
 	})
 );
@@ -85,14 +85,20 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 					mussels, if you like.
 				</Typography>
 			</CardContent>
+			<CardContent className={classes.createdBy}>Created by: Marco</CardContent>
 			<CardActions disableSpacing>
 				<IconButton aria-label="add to favorites">
 					<FavoriteIcon />
 				</IconButton>
 				29
-				<IconButton aria-label="full screen" className={classes.fullscreen}>
-					<Fullscreen />
-				</IconButton>
+				<div className={classes.rightIcons}>
+					<IconButton aria-label="send email">
+						<Email />
+					</IconButton>
+					<IconButton aria-label="full screen">
+						<Fullscreen />
+					</IconButton>
+				</div>
 			</CardActions>
 		</Card>
 	);

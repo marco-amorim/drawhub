@@ -10,6 +10,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { CircularProgress } from '@material-ui/core';
 
 interface FormValues {
+	title: string;
 	author: string;
 	imageUrl: string;
 	description: string;
@@ -17,6 +18,7 @@ interface FormValues {
 }
 
 const initialValues: FormValues = {
+	title: '',
 	author: '',
 	imageUrl: '',
 	description: '',
@@ -24,6 +26,7 @@ const initialValues: FormValues = {
 };
 
 const CreateDrawingSchema = Yup.object().shape({
+	title: Yup.string().required('This field is required'),
 	author: Yup.string().required('This field is required'),
 	imageUrl: Yup.string()
 		.url('Invalid URL format')
@@ -57,6 +60,7 @@ const DrawingForm: React.FC = () => {
 				{({ dirty, isValid }) => {
 					return (
 						<FormikForm>
+							<FormikInput name="title" label="Title" required />
 							<FormikInput name="author" label="Author" required />
 							<FormikInput name="imageUrl" label="Image URL" required />
 							<FormikInput name="description" label="Description" required />
