@@ -61,5 +61,17 @@ export const MuiTheme = createMuiTheme({
 				},
 			},
 		},
+
+		MuiTypography: {
+			colorTextSecondary: {
+				color: '#e1e1e6',
+			},
+		},
+
+		MuiIconButton: {
+			root: {
+				color: '#e1e1e6',
+			},
+		},
 	},
 });
