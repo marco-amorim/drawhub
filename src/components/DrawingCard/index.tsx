@@ -86,8 +86,8 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 		initialLikesCount();
 	});
 
-	const handleDelete = () => {
-		deleteDrawing(docId);
+	const handleDelete = async () => {
+		await deleteDrawing(docId);
 		window.location.reload();
 	};
 
