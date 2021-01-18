@@ -1,7 +1,7 @@
 import React from 'react';
 import DrawingCard from '../../components/DrawingCard';
 import { DrawingsContainer } from '../../assets/styles/DrawingsContainer';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { useCollectionDataOnce } from 'react-firebase-hooks/firestore';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -11,7 +11,7 @@ const UserDrawings = () => {
 	const firestore = firebase.firestore();
 	const postsRef = firestore.collection('posts');
 	const query = postsRef.orderBy('createdAt');
-	const [posts] = useCollectionData(query, { idField: 'id' });
+	const [posts] = useCollectionDataOnce(query, { idField: 'id' });
 	const [user] = useAuthState(getAuth());
 
 	return (
@@ -19,10 +19,10 @@ const UserDrawings = () => {
 			<h3>Your Drawings</h3>
 			<DrawingsContainer>
 				{user &&
-					posts?.reverse().map((post: any) => {
+					posts?.reverse().map((post: any, index) => {
 						if (user.uid === post.uid) {
 							return (
-								<li key={post.id}>
+								<li key={index}>
 									<DrawingCard
 										title={post.title}
 										author={post.author}
@@ -31,6 +31,9 @@ const UserDrawings = () => {
 										email={post.email}
 										imageUrl={post.imageUrl}
 										photoUrl={post.photoURL}
+										likedBy={post.likedBy}
+										likes={post.likes}
+										docId={post.id}
 										editMode={true}
 									/>
 								</li>

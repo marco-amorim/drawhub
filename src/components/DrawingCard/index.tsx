@@ -10,6 +10,9 @@ import IconButton from '@material-ui/core/IconButton';
 import { Delete, Email, FavoriteBorder } from '@material-ui/icons';
 import DrawingModal from '../DrawingModal';
 import firebase from 'firebase/app';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { getAuth } from '../../services/firebase';
+import deleteDrawing from '../../services/deleteDrawing';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -48,6 +51,9 @@ interface DrawingCardProps {
 	createdAt: firebase.firestore.Timestamp;
 	creatorId: string;
 	photoUrl: string;
+	likes: Number;
+	likedBy: [];
+	docId: any;
 	editMode: boolean;
 }
 
@@ -59,9 +65,18 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 	imageUrl,
 	photoUrl,
 	creatorId,
+	likes,
+	likedBy,
+	docId,
 	editMode,
 }) => {
 	const classes = useStyles();
+	const [user] = useAuthState(getAuth());
+
+	const handleDelete = () => {
+		deleteDrawing(docId);
+		window.location.reload();
+	};
 
 	return (
 		<Card className={classes.root}>
@@ -69,7 +84,7 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 				avatar={<Avatar src={photoUrl} aria-label="user photo" />}
 				action={
 					editMode && (
-						<IconButton aria-label="delete">
+						<IconButton aria-label="delete" onClick={handleDelete}>
 							<Delete />
 						</IconButton>
 					)
@@ -86,7 +101,7 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 				<IconButton aria-label="add to favorites">
 					<FavoriteBorder />
 				</IconButton>
-				29
+				{likes}
 				<div className={classes.rightIcons}>
 					<IconButton
 						aria-label="send email"
