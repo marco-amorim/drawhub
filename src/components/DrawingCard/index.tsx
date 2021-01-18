@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
 		root: {
 			width: 345,
 			backgroundColor: 'var(--shape-hover)',
-			margin: '17px 0px',
+			margin: '11px',
 
 			'@media (max-width: 767px)': {
 				width: 310,
