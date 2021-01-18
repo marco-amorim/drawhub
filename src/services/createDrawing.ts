@@ -2,7 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import { FormikValues } from 'formik';
 
-const postDrawing = async (formValues: FormikValues) => {
+const createDrawing = async (formValues: FormikValues) => {
 	const firestore = firebase.firestore();
 	const postsRef = firestore.collection('posts');
 
@@ -22,4 +22,4 @@ const postDrawing = async (formValues: FormikValues) => {
 	}
 };
 
-export default postDrawing;
+export default createDrawing;

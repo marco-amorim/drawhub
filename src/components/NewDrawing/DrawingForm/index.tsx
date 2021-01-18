@@ -4,7 +4,7 @@ import { FormikValues, Formik } from 'formik';
 
 import { MuiButton, FormikInput, FormikForm, LoadingContainer } from './styles';
 import { useHistory } from 'react-router-dom';
-import postDrawing from '../../../services/postDrawing';
+import createDrawing from '../../../services/createDrawing';
 import { getAuth } from '../../../services/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { CircularProgress } from '@material-ui/core';
@@ -42,7 +42,7 @@ const DrawingForm: React.FC = () => {
 	const handleSubmit = (values: FormikValues) => {
 		const { uid, photoURL } = user;
 		const formValues = { ...values, uid, photoURL };
-		postDrawing(formValues);
+		createDrawing(formValues);
 
 		history.push('/');
 	};
