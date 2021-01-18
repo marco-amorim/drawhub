@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -7,12 +7,15 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
-import { Delete, Email, FavoriteBorder } from '@material-ui/icons';
+import { Delete, Email, FavoriteBorder, Favorite } from '@material-ui/icons';
 import DrawingModal from '../DrawingModal';
 import firebase from 'firebase/app';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from '../../services/firebase';
 import deleteDrawing from '../../services/deleteDrawing';
+import updateLikes from '../../services/updateLikes';
+import getLikesInitialState from '../../services/getLikesInitialState';
+import getLikesCount from '../../services/getLikesCount';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -49,10 +52,7 @@ interface DrawingCardProps {
 	imageUrl: string;
 	email: string;
 	createdAt: firebase.firestore.Timestamp;
-	creatorId: string;
 	photoUrl: string;
-	likes: Number;
-	likedBy: [];
 	docId: any;
 	editMode: boolean;
 }
@@ -64,18 +64,35 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 	email,
 	imageUrl,
 	photoUrl,
-	creatorId,
-	likes,
-	likedBy,
 	docId,
 	editMode,
 }) => {
 	const classes = useStyles();
 	const [user] = useAuthState(getAuth());
+	const [liked, setLiked] = useState(false);
+	const [likesCount, setLikesCount] = useState(0);
+
+	useEffect(() => {
+		async function initialLikeState() {
+			setLiked(await getLikesInitialState(user?.uid, docId));
+		}
+
+		initialLikeState();
+
+		async function initialLikesCount() {
+			setLikesCount(await getLikesCount(docId));
+		}
+
+		initialLikesCount();
+	});
 
 	const handleDelete = () => {
 		deleteDrawing(docId);
 		window.location.reload();
+	};
+
+	const handleLikes = async () => {
+		setLiked(await updateLikes(user?.uid, docId));
 	};
 
 	return (
@@ -98,10 +115,10 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 				Created by: {author}
 			</CardContent>
 			<CardActions disableSpacing>
-				<IconButton aria-label="add to favorites">
-					<FavoriteBorder />
+				<IconButton aria-label="add to favorites" onClick={handleLikes}>
+					{liked ? <Favorite /> : <FavoriteBorder />}
 				</IconButton>
-				{likes}
+				{likesCount}
 				<div className={classes.rightIcons}>
 					<IconButton
 						aria-label="send email"

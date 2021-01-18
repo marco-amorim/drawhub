@@ -27,12 +27,9 @@ const UserDrawings = () => {
 										title={post.title}
 										author={post.author}
 										createdAt={post.createdAt}
-										creatorId={post.uid}
 										email={post.email}
 										imageUrl={post.imageUrl}
 										photoUrl={post.photoURL}
-										likedBy={post.likedBy}
-										likes={post.likes}
 										docId={post.id}
 										editMode={true}
 									/>
