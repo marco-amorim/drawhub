@@ -49,6 +49,7 @@ interface DrawingCardProps {
 	createdAt: firebase.firestore.Timestamp;
 	creatorId: string;
 	photoUrl: string;
+	editMode: boolean;
 }
 
 const DrawingCard: React.FC<DrawingCardProps> = ({
@@ -59,6 +60,7 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 	imageUrl,
 	photoUrl,
 	creatorId,
+	editMode,
 }) => {
 	const classes = useStyles();
 
@@ -71,9 +73,11 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 					</Avatar>
 				}
 				action={
-					<IconButton aria-label="settings">
-						<MoreVertIcon />
-					</IconButton>
+					editMode && (
+						<IconButton aria-label="settings">
+							<MoreVertIcon />
+						</IconButton>
+					)
 				}
 				title={title}
 				subheader={new Date(createdAt.toDate()).toLocaleDateString()}

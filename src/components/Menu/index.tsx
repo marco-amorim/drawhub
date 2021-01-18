@@ -69,6 +69,11 @@ const Menu: React.FC<MenuProps> = ({ photoURL }) => {
 		handleClose(event);
 	};
 
+	const navigateToMyPosts = (event: React.MouseEvent<EventTarget>) => {
+		history.push('/posts/edit');
+		handleClose(event);
+	};
+
 	function handleListKeyDown(event: React.KeyboardEvent) {
 		if (event.key === 'Tab') {
 			event.preventDefault();
@@ -120,18 +125,14 @@ const Menu: React.FC<MenuProps> = ({ photoURL }) => {
 										id="menu-list-grow"
 										onKeyDown={handleListKeyDown}
 									>
-										<MenuItem
-											onClick={(event) => navigateToPostCreation(event)}
-										>
+										<MenuItem onClick={navigateToPostCreation}>
 											New Post
 										</MenuItem>
-										<MenuItem onClick={handleClose}>My Posts</MenuItem>
-										<MenuItem onClick={(event) => navigateToSourceCode(event)}>
+										<MenuItem onClick={navigateToMyPosts}>My Posts</MenuItem>
+										<MenuItem onClick={navigateToSourceCode}>
 											Source Code
 										</MenuItem>
-										<MenuItem onClick={(event) => logout(event)}>
-											Logout
-										</MenuItem>
+										<MenuItem onClick={logout}>Logout</MenuItem>
 									</MenuList>
 								</ClickAwayListener>
 							</Paper>

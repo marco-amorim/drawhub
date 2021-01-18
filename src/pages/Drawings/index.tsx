@@ -1,6 +1,6 @@
 import React from 'react';
 import DrawingCard from '../../components/DrawingCard';
-import { DrawingsContainer } from './styles';
+import { DrawingsContainer } from '../../assets/styles/DrawingsContainer';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
@@ -15,7 +15,7 @@ const Drawings = () => {
 		<React.Fragment>
 			<h3>Drawings</h3>
 			<DrawingsContainer>
-				{posts?.map((post: any) => {
+				{posts?.reverse().map((post: any) => {
 					return (
 						<li key={post.id}>
 							<DrawingCard
@@ -26,6 +26,7 @@ const Drawings = () => {
 								email={post.email}
 								imageUrl={post.imageUrl}
 								photoUrl={post.photoURL}
+								editMode={false}
 							/>
 						</li>
 					);
