@@ -16,7 +16,9 @@ const postDrawing = async (formValues: FormikValues) => {
 	try {
 		await postsRef.add(newPost);
 	} catch (error) {
-		console.log(error);
+		console.log(
+			'We are having trouble trying to create the post, error: ' + error
+		);
 	}
 };
 

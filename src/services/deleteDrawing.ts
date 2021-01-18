@@ -8,7 +8,9 @@ const deleteDrawing = async (docId: any) => {
 	try {
 		await postsRef.doc(docId).delete();
 	} catch (error) {
-		console.log(error);
+		console.log(
+			'We are having trouble trying to delete the post, error: ' + error
+		);
 	}
 };
 
