@@ -7,8 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { Email, FavoriteBorder } from '@material-ui/icons';
+import { Delete, Email, FavoriteBorder } from '@material-ui/icons';
 import DrawingModal from '../DrawingModal';
 import firebase from 'firebase/app';
 
@@ -67,15 +66,11 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 	return (
 		<Card className={classes.root}>
 			<CardHeader
-				avatar={
-					<Avatar src={photoUrl} aria-label="recipe">
-						A
-					</Avatar>
-				}
+				avatar={<Avatar src={photoUrl} aria-label="user photo" />}
 				action={
 					editMode && (
-						<IconButton aria-label="settings">
-							<MoreVertIcon />
+						<IconButton aria-label="delete">
+							<Delete />
 						</IconButton>
 					)
 				}
