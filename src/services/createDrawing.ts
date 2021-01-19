@@ -11,6 +11,8 @@ const createDrawing = async (formValues: FormikValues) => {
 		createdAt: firebase.firestore.FieldValue.serverTimestamp(),
 		likes: 0,
 		likedBy: [],
+		commentsCount: 0,
+		comments: [],
 	};
 
 	try {

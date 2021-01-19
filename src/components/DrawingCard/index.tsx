@@ -155,7 +155,7 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 					</div>
 				</CardActions>
 				<Collapse in={showComments} timeout="auto" unmountOnExit>
-					<CardContent>{user && <CommentForm />}</CardContent>
+					<CardContent>{user && <CommentForm docId={docId} />}</CardContent>
 				</Collapse>
 			</Card>
 		</ClickAwayListener>
