@@ -10,7 +10,9 @@ export const GlobalStyles = createGlobalStyle`
     --green: #04d361;
     --shape: #202024;
     --shape-hover: #29292e;
+    --shape-middle: #202024;
     --borders: #323238;
+    --error: #f44336;
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;

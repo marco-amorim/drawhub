@@ -4,14 +4,14 @@ export const MuiTheme = createMuiTheme({
 	overrides: {
 		MuiInputBase: {
 			input: {
-				color: '#e1e1e6',
+				color: 'var(--white)',
 				fontFamily: 'Source Code Pro',
 			},
 		},
 
 		MuiFormHelperText: {
 			root: {
-				color: '#f44336',
+				color: 'var(--error)',
 				fontFamily: 'Source Code Pro',
 			},
 		},
@@ -19,15 +19,15 @@ export const MuiTheme = createMuiTheme({
 		MuiInput: {
 			underline: {
 				'&:before': {
-					borderBottom: '2px solid #0071bd',
+					borderBottom: '2px solid var(--blue-light)',
 				},
 
 				'&:after': {
-					borderBottom: '2px solid #0071bd',
+					borderBottom: '2px solid var(--blue-light)',
 				},
 
 				'&:hover:not(.Mui-disabled):before': {
-					borderBottom: '2px solid #0071bd',
+					borderBottom: '2px solid var(--blue-light)',
 				},
 			},
 
@@ -38,33 +38,33 @@ export const MuiTheme = createMuiTheme({
 
 		MuiFormLabel: {
 			root: {
-				color: '#e1e1e6',
+				color: 'var(--white)',
 				fontSize: '1rem',
 				fontFamily: 'Source Code Pro',
 				'&$focused': {
-					color: '#04d361',
+					color: 'var(--green)',
 				},
 			},
 		},
 
 		MuiPaper: {
 			root: {
-				color: '#e1e1e6',
-				backgroundColor: '#202024',
+				color: 'var(--white)',
+				backgroundColor: 'var(--shape-middle)',
 			},
 		},
 
 		MuiListItem: {
 			button: {
 				'&:hover': {
-					backgroundColor: '#29292e',
+					backgroundColor: 'var(--shape-hover)',
 				},
 			},
 		},
 
 		MuiTypography: {
 			colorTextSecondary: {
-				color: '#e1e1e6',
+				color: 'var(--white)',
 			},
 			body2: {
 				fontFamily: 'Source Code Pro',
@@ -73,7 +73,7 @@ export const MuiTheme = createMuiTheme({
 
 		MuiIconButton: {
 			root: {
-				color: '#e1e1e6',
+				color: 'var(--white)',
 			},
 		},
 

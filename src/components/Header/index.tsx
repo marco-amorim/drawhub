@@ -31,7 +31,7 @@ const Header = () => {
 			{loading ? (
 				<HeaderButton disabled={true} style={{ pointerEvents: 'none' }}>
 					<CircularProgress
-						style={{ color: '#04d361', height: '35px', width: '35px' }}
+						style={{ color: 'var(--green)', height: '35px', width: '35px' }}
 					/>
 				</HeaderButton>
 			) : (

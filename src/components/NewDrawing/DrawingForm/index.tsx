@@ -80,7 +80,7 @@ const DrawingForm: React.FC = () => {
 			<LoadingContainer>
 				<CircularProgress
 					style={{
-						color: '#04d361',
+						color: 'var(--green)',
 						textAlign: 'center',
 						height: '80px',
 						width: '80px',
