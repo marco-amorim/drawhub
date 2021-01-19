@@ -4,8 +4,8 @@ import { FormikValues, Formik } from 'formik';
 
 import { MuiButton, FormikInput, FormikForm, LoadingContainer } from './styles';
 import { useHistory } from 'react-router-dom';
-import createDrawing from '../../../services/createDrawing';
-import { getAuth } from '../../../services/firebase';
+import createDrawing from '../../services/createDrawing';
+import { getAuth } from '../../services/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { CircularProgress } from '@material-ui/core';
 

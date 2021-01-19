@@ -2,7 +2,7 @@ import { createStyles, IconButton, makeStyles, Theme } from '@material-ui/core';
 import { AddComment } from '@material-ui/icons';
 import { Form, Formik, FormikValues } from 'formik';
 import React from 'react';
-import FormikField from '../NewDrawing/FormikField';
+import FormikField from '../FormikField';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
