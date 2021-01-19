@@ -7,7 +7,14 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
-import { Delete, Email, FavoriteBorder, Favorite } from '@material-ui/icons';
+import {
+	Delete,
+	Email,
+	FavoriteBorder,
+	Favorite,
+	InsertComment,
+	InsertCommentOutlined,
+} from '@material-ui/icons';
 import DrawingModal from '../DrawingModal';
 import firebase from 'firebase/app';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -16,6 +23,8 @@ import deleteDrawing from '../../services/deleteDrawing';
 import updateLikes from '../../services/updateLikes';
 import getLikesInitialState from '../../services/getLikesInitialState';
 import getLikesCount from '../../services/getLikesCount';
+import { Collapse } from '@material-ui/core';
+import CommentForm from '../CommentForm';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -71,6 +80,7 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 	const [user] = useAuthState(getAuth());
 	const [liked, setLiked] = useState(false);
 	const [likesCount, setLikesCount] = useState(0);
+	const [expanded, setExpanded] = React.useState(false);
 
 	useEffect(() => {
 		async function initialLikeState() {
@@ -85,6 +95,10 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 
 		initialLikesCount();
 	});
+
+	const handleExpandClick = () => {
+		setExpanded(!expanded);
+	};
 
 	const handleDelete = async () => {
 		await deleteDrawing(docId);
@@ -119,6 +133,14 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 					{liked ? <Favorite /> : <FavoriteBorder />}
 				</IconButton>
 				{likesCount}
+				<IconButton
+					aria-label="show comments"
+					aria-expanded={expanded}
+					onClick={handleExpandClick}
+				>
+					{expanded ? <InsertComment /> : <InsertCommentOutlined />}
+				</IconButton>
+				{0}
 				<div className={classes.rightIcons}>
 					<IconButton
 						aria-label="send email"
@@ -131,6 +153,11 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 					</IconButton>
 				</div>
 			</CardActions>
+			<Collapse in={expanded} timeout="auto" unmountOnExit>
+				<CardContent>
+					<CommentForm />
+				</CardContent>
+			</Collapse>
 		</Card>
 	);
 };
