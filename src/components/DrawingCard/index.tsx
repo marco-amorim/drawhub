@@ -23,7 +23,7 @@ import deleteDrawing from '../../services/deleteDrawing';
 import updateLikes from '../../services/updateLikes';
 import getLikesInitialState from '../../services/getLikesInitialState';
 import getLikesCount from '../../services/getLikesCount';
-import { ClickAwayListener, Collapse } from '@material-ui/core';
+import { Collapse } from '@material-ui/core';
 import CommentForm from '../CommentForm';
 import CommentsList from '../CommentsList';
 import getCommentsCount from '../../services/getCommentsCount';
@@ -120,58 +120,56 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 	};
 
 	return (
-		<ClickAwayListener onClickAway={() => setShowComments(false)}>
-			<Card className={classes.root}>
-				<CardHeader
-					avatar={<Avatar src={photoUrl} aria-label="user photo" />}
-					action={
-						editMode && (
-							<IconButton aria-label="delete" onClick={handleDelete}>
-								<Delete />
-							</IconButton>
-						)
-					}
-					title={title}
-					subheader={new Date(createdAt.toDate()).toLocaleDateString()}
-				/>
-				<CardMedia className={classes.media} image={imageUrl} title={title} />
+		<Card className={classes.root}>
+			<CardHeader
+				avatar={<Avatar src={photoUrl} aria-label="user photo" />}
+				action={
+					editMode && (
+						<IconButton aria-label="delete" onClick={handleDelete}>
+							<Delete />
+						</IconButton>
+					)
+				}
+				title={title}
+				subheader={new Date(createdAt.toDate()).toLocaleDateString()}
+			/>
+			<CardMedia className={classes.media} image={imageUrl} title={title} />
 
-				<CardContent className={classes.createdBy}>
-					Created by: {author}
-				</CardContent>
-				<CardActions disableSpacing>
-					<IconButton aria-label="add to favorites" onClick={handleLikes}>
-						{liked ? <Favorite /> : <FavoriteBorder />}
-					</IconButton>
-					{likesCount}
+			<CardContent className={classes.createdBy}>
+				Created by: {author}
+			</CardContent>
+			<CardActions disableSpacing>
+				<IconButton aria-label="add to favorites" onClick={handleLikes}>
+					{liked ? <Favorite /> : <FavoriteBorder />}
+				</IconButton>
+				{likesCount}
+				<IconButton
+					aria-label="show comments"
+					aria-expanded={showComments}
+					onClick={handleShowComments}
+				>
+					{showComments ? <InsertComment /> : <InsertCommentOutlined />}
+				</IconButton>
+				{commentsCount}
+				<div className={classes.rightIcons}>
 					<IconButton
-						aria-label="show comments"
-						aria-expanded={showComments}
-						onClick={handleShowComments}
+						aria-label="send email"
+						onClick={() => window.open('mailto:' + email, '_blank')}
 					>
-						{showComments ? <InsertComment /> : <InsertCommentOutlined />}
+						<Email />
 					</IconButton>
-					{commentsCount}
-					<div className={classes.rightIcons}>
-						<IconButton
-							aria-label="send email"
-							onClick={() => window.open('mailto:' + email, '_blank')}
-						>
-							<Email />
-						</IconButton>
-						<IconButton aria-label="full screen">
-							<DrawingModal imageUrl={imageUrl} />
-						</IconButton>
-					</div>
-				</CardActions>
-				<Collapse in={showComments} timeout="auto" unmountOnExit>
-					<CardContent>
-						<CommentsList docId={docId} />
-						{user && <CommentForm docId={docId} />}
-					</CardContent>
-				</Collapse>
-			</Card>
-		</ClickAwayListener>
+					<IconButton aria-label="full screen">
+						<DrawingModal imageUrl={imageUrl} />
+					</IconButton>
+				</div>
+			</CardActions>
+			<Collapse in={showComments} timeout="auto" unmountOnExit>
+				<CardContent>
+					<CommentsList docId={docId} />
+					{user && <CommentForm docId={docId} />}
+				</CardContent>
+			</Collapse>
+		</Card>
 	);
 };
 

@@ -69,6 +69,9 @@ export const MuiTheme = createMuiTheme({
 			body2: {
 				fontFamily: 'Source Code Pro',
 			},
+			body1: {
+				fontFamily: 'Source Code Pro',
+			},
 		},
 
 		MuiIconButton: {
