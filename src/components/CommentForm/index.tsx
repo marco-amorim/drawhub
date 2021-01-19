@@ -2,6 +2,8 @@ import { createStyles, IconButton, makeStyles, Theme } from '@material-ui/core';
 import { AddComment } from '@material-ui/icons';
 import { Form, Formik, FormikValues } from 'formik';
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { getAuth } from '../../services/firebase';
 import FormikField from '../FormikField';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -20,15 +22,17 @@ const initialValues: CommentFormValues = {
 	comment: '',
 };
 
-const handleSubmit = (values: FormikValues, actions: any) => {
-	const { comment } = values;
-	console.log({ comment });
-
-	actions.resetForm({});
-};
-
 const CommentForm = () => {
+	const [user] = useAuthState(getAuth());
 	const classes = useStyles();
+
+	const handleSubmit = (values: FormikValues, actions: any) => {
+		const { uid, photoURL } = user;
+		const formValues = { ...values, uid, photoURL };
+		console.log(formValues);
+
+		actions.resetForm({});
+	};
 
 	return (
 		<Formik onSubmit={handleSubmit} initialValues={initialValues}>

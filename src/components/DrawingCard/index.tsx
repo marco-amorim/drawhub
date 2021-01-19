@@ -23,7 +23,7 @@ import deleteDrawing from '../../services/deleteDrawing';
 import updateLikes from '../../services/updateLikes';
 import getLikesInitialState from '../../services/getLikesInitialState';
 import getLikesCount from '../../services/getLikesCount';
-import { Collapse } from '@material-ui/core';
+import { ClickAwayListener, Collapse } from '@material-ui/core';
 import CommentForm from '../CommentForm';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -80,7 +80,7 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 	const [user] = useAuthState(getAuth());
 	const [liked, setLiked] = useState(false);
 	const [likesCount, setLikesCount] = useState(0);
-	const [expanded, setExpanded] = React.useState(false);
+	const [showComments, setShowComments] = React.useState(false);
 
 	useEffect(() => {
 		async function initialLikeState() {
@@ -96,8 +96,8 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 		initialLikesCount();
 	});
 
-	const handleExpandClick = () => {
-		setExpanded(!expanded);
+	const handleShowComments = () => {
+		setShowComments(!showComments);
 	};
 
 	const handleDelete = async () => {
@@ -110,55 +110,57 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 	};
 
 	return (
-		<Card className={classes.root}>
-			<CardHeader
-				avatar={<Avatar src={photoUrl} aria-label="user photo" />}
-				action={
-					editMode && (
-						<IconButton aria-label="delete" onClick={handleDelete}>
-							<Delete />
-						</IconButton>
-					)
-				}
-				title={title}
-				subheader={new Date(createdAt.toDate()).toLocaleDateString()}
-			/>
-			<CardMedia className={classes.media} image={imageUrl} title={title} />
+		<ClickAwayListener onClickAway={() => setShowComments(false)}>
+			<Card className={classes.root}>
+				<CardHeader
+					avatar={<Avatar src={photoUrl} aria-label="user photo" />}
+					action={
+						editMode && (
+							<IconButton aria-label="delete" onClick={handleDelete}>
+								<Delete />
+							</IconButton>
+						)
+					}
+					title={title}
+					subheader={new Date(createdAt.toDate()).toLocaleDateString()}
+				/>
+				<CardMedia className={classes.media} image={imageUrl} title={title} />
 
-			<CardContent className={classes.createdBy}>
-				Created by: {author}
-			</CardContent>
-			<CardActions disableSpacing>
-				<IconButton aria-label="add to favorites" onClick={handleLikes}>
-					{liked ? <Favorite /> : <FavoriteBorder />}
-				</IconButton>
-				{likesCount}
-				<IconButton
-					aria-label="show comments"
-					aria-expanded={expanded}
-					onClick={handleExpandClick}
-				>
-					{expanded ? <InsertComment /> : <InsertCommentOutlined />}
-				</IconButton>
-				{0}
-				<div className={classes.rightIcons}>
-					<IconButton
-						aria-label="send email"
-						onClick={() => window.open('mailto:' + email, '_blank')}
-					>
-						<Email />
-					</IconButton>
-					<IconButton aria-label="full screen">
-						<DrawingModal imageUrl={imageUrl} />
-					</IconButton>
-				</div>
-			</CardActions>
-			<Collapse in={expanded} timeout="auto" unmountOnExit>
-				<CardContent>
-					<CommentForm />
+				<CardContent className={classes.createdBy}>
+					Created by: {author}
 				</CardContent>
-			</Collapse>
-		</Card>
+				<CardActions disableSpacing>
+					<IconButton aria-label="add to favorites" onClick={handleLikes}>
+						{liked ? <Favorite /> : <FavoriteBorder />}
+					</IconButton>
+					{likesCount}
+					<IconButton
+						aria-label="show comments"
+						aria-expanded={showComments}
+						onClick={handleShowComments}
+					>
+						{showComments ? <InsertComment /> : <InsertCommentOutlined />}
+					</IconButton>
+					{0}
+					<div className={classes.rightIcons}>
+						<IconButton
+							aria-label="send email"
+							onClick={() => window.open('mailto:' + email, '_blank')}
+						>
+							<Email />
+						</IconButton>
+						<IconButton aria-label="full screen">
+							<DrawingModal imageUrl={imageUrl} />
+						</IconButton>
+					</div>
+				</CardActions>
+				<Collapse in={showComments} timeout="auto" unmountOnExit>
+					<CardContent>
+						<CommentForm />
+					</CardContent>
+				</Collapse>
+			</Card>
+		</ClickAwayListener>
 	);
 };
 
