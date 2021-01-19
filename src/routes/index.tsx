@@ -1,8 +1,8 @@
 import { Route } from 'react-router-dom';
-import Drawings from '../../pages/Drawings';
-import Landing from '../../pages/Landing';
-import NewDrawing from '../../pages/NewDrawing';
-import UserDrawings from '../../pages/UserDrawings';
+import Drawings from '../pages/Drawings';
+import Landing from '../pages/Landing';
+import NewDrawing from '../pages/NewDrawing';
+import UserDrawings from '../pages/UserDrawings';
 
 const Routes = () => {
 	return (
