@@ -32,8 +32,8 @@ const CommentForm: React.FC<CommentFormProps> = ({ docId }) => {
 	const classes = useStyles();
 
 	const handleSubmit = (values: FormikValues, actions: any) => {
-		const { uid, photoURL } = user;
-		const formValues = { ...values, uid, photoURL };
+		const { uid, photoURL, displayName } = user;
+		const formValues = { ...values, displayName, uid, photoURL };
 		createComment(formValues, docId);
 
 		actions.resetForm({});

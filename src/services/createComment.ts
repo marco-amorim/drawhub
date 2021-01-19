@@ -7,12 +7,15 @@ const createComment = async (formValues: FormikValues, docId: string) => {
 	const postsRef = firestore.collection('posts');
 	const docRef = postsRef.doc(docId);
 
-	console.log(formValues);
-	console.log(docId);
+	const newComment = {
+		...formValues,
+		createdAt: new Date(),
+	};
 
-	// await docRef.update({
-	// 	comments: firebase.firestore.FieldValue.arrayRemove(formValues),
-	// });
+	await docRef.update({
+		comments: firebase.firestore.FieldValue.arrayUnion(newComment),
+		commentsCount: firebase.firestore.FieldValue.increment(1),
+	});
 };
 
 export default createComment;

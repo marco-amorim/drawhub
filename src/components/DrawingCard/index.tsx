@@ -25,6 +25,7 @@ import getLikesInitialState from '../../services/getLikesInitialState';
 import getLikesCount from '../../services/getLikesCount';
 import { ClickAwayListener, Collapse } from '@material-ui/core';
 import CommentForm from '../CommentForm';
+import CommentsList from '../CommentsList';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -155,7 +156,10 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 					</div>
 				</CardActions>
 				<Collapse in={showComments} timeout="auto" unmountOnExit>
-					<CardContent>{user && <CommentForm docId={docId} />}</CardContent>
+					<CardContent>
+						<CommentsList />
+						{user && <CommentForm docId={docId} />}
+					</CardContent>
 				</Collapse>
 			</Card>
 		</ClickAwayListener>
