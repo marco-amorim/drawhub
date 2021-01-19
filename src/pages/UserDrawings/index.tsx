@@ -16,7 +16,11 @@ const UserDrawings = () => {
 
 	return (
 		<React.Fragment>
-			<h3>Your Drawings</h3>
+			{user ? (
+				<h3>Your Drawings</h3>
+			) : (
+				<h3>You need to be logged in for this :/</h3>
+			)}
 			<DrawingsContainer>
 				{user &&
 					posts?.reverse().map((post: any, index) => {
