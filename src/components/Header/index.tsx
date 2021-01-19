@@ -22,7 +22,7 @@ const Header = () => {
 
 	return (
 		<HeaderContainer>
-			<HeaderLink to="/drawings">View Drawings</HeaderLink>
+			<HeaderLink to="/posts/view">View Drawings</HeaderLink>
 
 			<HeaderTitle to="/">
 				Draw<span>hub</span>

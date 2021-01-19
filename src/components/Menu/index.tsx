@@ -65,7 +65,7 @@ const Menu: React.FC<MenuProps> = ({ photoURL }) => {
 	};
 
 	const navigateToPostCreation = (event: React.MouseEvent<EventTarget>) => {
-		history.push('/post/new');
+		history.push('/posts/new');
 		handleClose(event);
 	};
 

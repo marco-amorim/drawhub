@@ -8,8 +8,8 @@ const Routes = () => {
 	return (
 		<>
 			<Route component={Landing} exact path="/" />
-			<Route component={Drawings} path="/drawings" />
-			<Route component={NewDrawing} path="/post/new" />
+			<Route component={Drawings} path="/posts/view" />
+			<Route component={NewDrawing} path="/posts/new" />
 			<Route component={UserDrawings} path="/posts/edit" />
 		</>
 	);
