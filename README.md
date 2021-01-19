@@ -1,4 +1,4 @@
-# Drawhub - v1.0
+# Drawhub
 
 - Drawhub is a online platform to share your drawings and meet artists
 
