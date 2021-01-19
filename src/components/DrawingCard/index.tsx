@@ -26,6 +26,7 @@ import getLikesCount from '../../services/getLikesCount';
 import { ClickAwayListener, Collapse } from '@material-ui/core';
 import CommentForm from '../CommentForm';
 import CommentsList from '../CommentsList';
+import getCommentsCount from '../../services/getCommentsCount';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -81,6 +82,8 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 	const [user] = useAuthState(getAuth());
 	const [liked, setLiked] = useState(false);
 	const [likesCount, setLikesCount] = useState(0);
+	const [commentsCount, setCommentsCount] = useState(0);
+
 	const [showComments, setShowComments] = React.useState(false);
 
 	useEffect(() => {
@@ -95,6 +98,12 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 		}
 
 		initialLikesCount();
+
+		async function initialCommentsCount() {
+			setCommentsCount(await getCommentsCount(docId));
+		}
+
+		initialCommentsCount();
 	});
 
 	const handleShowComments = () => {
@@ -142,7 +151,7 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 					>
 						{showComments ? <InsertComment /> : <InsertCommentOutlined />}
 					</IconButton>
-					{0}
+					{commentsCount}
 					<div className={classes.rightIcons}>
 						<IconButton
 							aria-label="send email"
@@ -157,7 +166,7 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 				</CardActions>
 				<Collapse in={showComments} timeout="auto" unmountOnExit>
 					<CardContent>
-						<CommentsList />
+						<CommentsList docId={docId} />
 						{user && <CommentForm docId={docId} />}
 					</CardContent>
 				</Collapse>

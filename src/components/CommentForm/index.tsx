@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface CommentFormValues {
-	comment: string;
+	text: string;
 }
 
 interface CommentFormProps {
@@ -24,7 +24,7 @@ interface CommentFormProps {
 }
 
 const initialValues: CommentFormValues = {
-	comment: '',
+	text: '',
 };
 
 const CommentForm: React.FC<CommentFormProps> = ({ docId }) => {
@@ -42,7 +42,7 @@ const CommentForm: React.FC<CommentFormProps> = ({ docId }) => {
 	return (
 		<Formik onSubmit={handleSubmit} initialValues={initialValues}>
 			<Form>
-				<FormikField name="comment" label="Comment" required />
+				<FormikField name="text" label="Comment" required />
 				<IconButton type="submit" className={classes.sendButton}>
 					<AddComment />
 				</IconButton>
