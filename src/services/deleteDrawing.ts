@@ -1,7 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
-const deleteDrawing = async (docId: any) => {
+const deleteDrawing = async (docId: string) => {
 	const firestore = firebase.firestore();
 	const postsRef = firestore.collection('posts');
 

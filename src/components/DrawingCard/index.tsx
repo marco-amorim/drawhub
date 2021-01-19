@@ -53,7 +53,7 @@ interface DrawingCardProps {
 	email: string;
 	createdAt: firebase.firestore.Timestamp;
 	photoUrl: string;
-	docId: any;
+	docId: string;
 	editMode: boolean;
 }
 
