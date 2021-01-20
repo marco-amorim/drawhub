@@ -14,7 +14,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from '../../services/firebase';
 import deleteDrawing from '../../services/deleteDrawing';
 import updateLikes from '../../services/updateLikes';
-import getLikesInitialState from '../../services/getLikesInitialState';
+import getLikes from '../../services/getLikes';
 import getLikesCount from '../../services/getLikesCount';
 import {
 	Collapse,
@@ -89,7 +89,7 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 
 	useEffect(() => {
 		async function initialLikeState() {
-			setLiked(await getLikesInitialState(user?.uid, docId));
+			setLiked(await getLikes(user?.uid, docId));
 		}
 
 		async function initialLikesCount() {

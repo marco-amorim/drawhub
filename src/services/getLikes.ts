@@ -1,7 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
-const getLikesInitialState = async (userId: string, docId: string) => {
+const getLikes = async (userId: string, docId: string) => {
 	const firestore = firebase.firestore();
 	const postsRef = firestore.collection('posts');
 	const docRef = postsRef.doc(docId);
@@ -18,4 +18,4 @@ const getLikesInitialState = async (userId: string, docId: string) => {
 	}
 };
 
-export default getLikesInitialState;
+export default getLikes;
