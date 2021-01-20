@@ -11,7 +11,9 @@ import {
 } from '@material-ui/core';
 import { Delete } from '@material-ui/icons';
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import deleteComment from '../../services/deleteComment';
+import { getAuth } from '../../services/firebase';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -35,7 +37,8 @@ interface CommentProps {
 
 const Comment: React.FC<CommentProps> = ({ comment, docId }) => {
 	const classes = useStyles();
-	const { createdAt, photoURL, displayName, text } = comment;
+	const { createdAt, photoURL, displayName, text, uid } = comment;
+	const [user] = useAuthState(getAuth());
 
 	const handleDelete = async () => {
 		await deleteComment(comment, docId);
@@ -51,11 +54,13 @@ const Comment: React.FC<CommentProps> = ({ comment, docId }) => {
 					<Avatar alt="profile" src={photoURL} />
 				</ListItemAvatar>
 				<ListItemText primary={displayName} secondary={text} />
-				<ListItemIcon>
-					<IconButton onClick={handleDelete}>
-						<Delete />
-					</IconButton>
-				</ListItemIcon>
+				{user?.uid === uid && (
+					<ListItemIcon>
+						<IconButton onClick={handleDelete}>
+							<Delete />
+						</IconButton>
+					</ListItemIcon>
+				)}
 			</ListItem>
 		</>
 	);
