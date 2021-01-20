@@ -6,21 +6,41 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from '../../services/firebase';
+import { LoadingContainer } from '../../assets/styles/LoadingContainer';
+import { CircularProgress } from '@material-ui/core';
 
 const UserDrawings = () => {
 	const firestore = firebase.firestore();
 	const postsRef = firestore.collection('posts');
 	const query = postsRef.orderBy('createdAt');
 	const [posts] = useCollectionDataOnce(query, { idField: 'id' });
-	const [user] = useAuthState(getAuth());
+	const [user, loading] = useAuthState(getAuth());
+
+	const renderTitle = () => {
+		if (user) {
+			return <h3>Your Drawings</h3>;
+		}
+
+		return <h3>You need to be logged in for this :/</h3>;
+	};
 
 	return (
 		<React.Fragment>
-			{user ? (
-				<h3>Your Drawings</h3>
+			{loading ? (
+				<LoadingContainer>
+					<CircularProgress
+						style={{
+							color: 'var(--green)',
+							textAlign: 'center',
+							height: '80px',
+							width: '80px',
+						}}
+					/>
+				</LoadingContainer>
 			) : (
-				<h3>You need to be logged in for this :/</h3>
+				renderTitle()
 			)}
+
 			<DrawingsContainer>
 				{user &&
 					posts?.reverse().map((post: any, index) => {

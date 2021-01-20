@@ -2,7 +2,8 @@ import React from 'react';
 import * as Yup from 'yup';
 import { FormikValues, Formik } from 'formik';
 
-import { MuiButton, FormikInput, FormikForm, LoadingContainer } from './styles';
+import { MuiButton, FormikInput, FormikForm } from './styles';
+import { LoadingContainer } from '../../assets/styles/LoadingContainer';
 import { useHistory } from 'react-router-dom';
 import createDrawing from '../../services/createDrawing';
 import { getAuth } from '../../services/firebase';
