@@ -104,7 +104,9 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 	});
 
 	const handleShowComments = () => {
-		setShowComments(!showComments);
+		if (commentsCount > 0) {
+			setShowComments(!showComments);
+		}
 	};
 
 	const handleDelete = async () => {
