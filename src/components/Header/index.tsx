@@ -6,8 +6,8 @@ import {
 } from './styles';
 import { getAuth, signInWithGoogle } from '../../services/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { CircularProgress } from '@material-ui/core';
 import Menu from '../Menu';
+import LoadingSpinner from '../LoadingSpinner';
 
 const Header = () => {
 	const [user, loading] = useAuthState(getAuth());
@@ -30,9 +30,7 @@ const Header = () => {
 
 			{loading ? (
 				<HeaderButton disabled={true} style={{ pointerEvents: 'none' }}>
-					<CircularProgress
-						style={{ color: 'var(--green)', height: '35px', width: '35px' }}
-					/>
+					<LoadingSpinner height="35px" width="35px" />
 				</HeaderButton>
 			) : (
 				renderMenu()

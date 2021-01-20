@@ -6,8 +6,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from '../../services/firebase';
-import { LoadingContainer } from '../../assets/styles/LoadingContainer';
-import { CircularProgress } from '@material-ui/core';
+import LoadingSpinner from '../../components/LoadingSpinner';
 
 const UserDrawings = () => {
 	const firestore = firebase.firestore();
@@ -26,20 +25,7 @@ const UserDrawings = () => {
 
 	return (
 		<React.Fragment>
-			{loading ? (
-				<LoadingContainer>
-					<CircularProgress
-						style={{
-							color: 'var(--green)',
-							textAlign: 'center',
-							height: '80px',
-							width: '80px',
-						}}
-					/>
-				</LoadingContainer>
-			) : (
-				renderTitle()
-			)}
+			{loading ? <LoadingSpinner height="80px" width="80px" /> : renderTitle()}
 
 			<DrawingsContainer>
 				{user &&

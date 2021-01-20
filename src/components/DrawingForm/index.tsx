@@ -3,12 +3,11 @@ import * as Yup from 'yup';
 import { FormikValues, Formik } from 'formik';
 
 import { MuiButton, FormikInput, FormikForm } from './styles';
-import { LoadingContainer } from '../../assets/styles/LoadingContainer';
 import { useHistory } from 'react-router-dom';
 import createDrawing from '../../services/createDrawing';
 import { getAuth } from '../../services/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { CircularProgress } from '@material-ui/core';
+import LoadingSpinner from '../LoadingSpinner';
 
 interface FormValues {
 	title: string;
@@ -76,27 +75,18 @@ const DrawingForm: React.FC = () => {
 		);
 	};
 
-	const renderLoadingComponent = () => {
-		return (
-			<LoadingContainer>
-				<CircularProgress
-					style={{
-						color: 'var(--green)',
-						textAlign: 'center',
-						height: '80px',
-						width: '80px',
-					}}
-				/>
-			</LoadingContainer>
-		);
+	const renderTitle = () => {
+		if (user) {
+			return <h3>Create your post</h3>;
+		}
+
+		return <h3>You need to be logged in for this :/</h3>;
 	};
 
 	return (
 		<React.Fragment>
-			{user && <h3>Create your post</h3>}
-			{!user && !loading && <h3>You need to be logged in for this :/</h3>}
+			{loading ? <LoadingSpinner height="80px" width="80px" /> : renderTitle()}
 			{!loading && user && renderForm()}
-			{loading && renderLoadingComponent()}
 		</React.Fragment>
 	);
 };
