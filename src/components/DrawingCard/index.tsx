@@ -104,7 +104,7 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 	});
 
 	const handleShowComments = () => {
-		if (commentsCount > 0) {
+		if (commentsCount > 0 || user) {
 			setShowComments(!showComments);
 		}
 	};
