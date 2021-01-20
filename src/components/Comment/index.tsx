@@ -10,10 +10,11 @@ import {
 	createStyles,
 } from '@material-ui/core';
 import { Delete } from '@material-ui/icons';
-import React from 'react';
+import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import deleteComment from '../../services/deleteComment';
 import { getAuth } from '../../services/firebase';
+import ActionModal from '../ActionModal';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -39,6 +40,7 @@ const Comment: React.FC<CommentProps> = ({ comment, docId }) => {
 	const classes = useStyles();
 	const { createdAt, photoURL, displayName, text, uid } = comment;
 	const [user] = useAuthState(getAuth());
+	const [showDeleteModal, setShowDeleteModal] = useState(false);
 
 	const handleDelete = async () => {
 		await deleteComment(comment, docId);
@@ -46,6 +48,15 @@ const Comment: React.FC<CommentProps> = ({ comment, docId }) => {
 
 	return (
 		<>
+			{showDeleteModal && (
+				<ActionModal
+					onConfirm={handleDelete}
+					onDismiss={() => setShowDeleteModal(false)}
+					currentState={showDeleteModal}
+					description={'Are you sure you want to delete this comment?'}
+					title={'Delete Comment'}
+				/>
+			)}
 			<ListItem className={classes.date}>
 				{new Date(createdAt.toDate()).toLocaleDateString()}
 			</ListItem>
@@ -56,7 +67,7 @@ const Comment: React.FC<CommentProps> = ({ comment, docId }) => {
 				<ListItemText primary={displayName} secondary={text} />
 				{user?.uid === uid && (
 					<ListItemIcon>
-						<IconButton onClick={handleDelete}>
+						<IconButton onClick={() => setShowDeleteModal(true)}>
 							<Delete />
 						</IconButton>
 					</ListItemIcon>

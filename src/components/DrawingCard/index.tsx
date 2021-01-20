@@ -29,6 +29,7 @@ import {
 import CommentForm from '../CommentForm';
 import CommentsList from '../CommentsList';
 import getCommentsCount from '../../services/getCommentsCount';
+import ActionModal from '../ActionModal';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -86,6 +87,7 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 	const [likesCount, setLikesCount] = useState(0);
 	const [commentsCount, setCommentsCount] = useState(0);
 	const [showComments, setShowComments] = useState(false);
+	const [showDeleteModal, setShowDeleteModal] = useState(false);
 
 	useEffect(() => {
 		async function initialLikeState() {
@@ -121,56 +123,71 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 	};
 
 	return (
-		<Card className={classes.root}>
-			<CardHeader
-				avatar={<Avatar src={photoUrl} aria-label="user photo" />}
-				action={
-					editMode && (
-						<IconButton aria-label="delete" onClick={handleDelete}>
-							<Delete />
-						</IconButton>
-					)
-				}
-				title={title}
-				subheader={new Date(createdAt.toDate()).toLocaleDateString()}
-			/>
-			<CardMedia className={classes.media} image={imageUrl} title={title} />
+		<>
+			{showDeleteModal && (
+				<ActionModal
+					onConfirm={handleDelete}
+					onDismiss={() => setShowDeleteModal(false)}
+					currentState={showDeleteModal}
+					description={'Are you sure you want to delete this post?'}
+					title={'Delete Post'}
+				/>
+			)}
 
-			<CardContent className={classes.createdBy}>
-				Created by: {author}
-			</CardContent>
-			<CardActions disableSpacing>
-				<IconButton aria-label="add to favorites" onClick={handleLikes}>
-					{liked ? <Favorite /> : <FavoriteBorder />}
-				</IconButton>
-				{likesCount}
-				<IconButton
-					aria-label="show comments"
-					aria-expanded={showComments}
-					onClick={handleShowComments}
-				>
-					{showComments ? <InsertComment /> : <InsertCommentOutlined />}
-				</IconButton>
-				{commentsCount}
-				<div className={classes.rightIcons}>
-					<IconButton
-						aria-label="send email"
-						onClick={() => window.open('mailto:' + email, '_blank')}
-					>
-						<Email />
-					</IconButton>
-					<IconButton aria-label="full screen">
-						<DrawingModal imageUrl={imageUrl} />
-					</IconButton>
-				</div>
-			</CardActions>
-			<Collapse in={showComments} timeout="auto" unmountOnExit>
-				<CardContent>
-					<CommentsList docId={docId} />
-					{user && <CommentForm docId={docId} />}
+			<Card className={classes.root}>
+				<CardHeader
+					avatar={<Avatar src={photoUrl} aria-label="user photo" />}
+					action={
+						editMode && (
+							<IconButton
+								aria-label="delete"
+								onClick={() => setShowDeleteModal(true)}
+							>
+								<Delete />
+							</IconButton>
+						)
+					}
+					title={title}
+					subheader={new Date(createdAt.toDate()).toLocaleDateString()}
+				/>
+				<CardMedia className={classes.media} image={imageUrl} title={title} />
+
+				<CardContent className={classes.createdBy}>
+					Created by: {author}
 				</CardContent>
-			</Collapse>
-		</Card>
+				<CardActions disableSpacing>
+					<IconButton aria-label="add to favorites" onClick={handleLikes}>
+						{liked ? <Favorite /> : <FavoriteBorder />}
+					</IconButton>
+					{likesCount}
+					<IconButton
+						aria-label="show comments"
+						aria-expanded={showComments}
+						onClick={handleShowComments}
+					>
+						{showComments ? <InsertComment /> : <InsertCommentOutlined />}
+					</IconButton>
+					{commentsCount}
+					<div className={classes.rightIcons}>
+						<IconButton
+							aria-label="send email"
+							onClick={() => window.open('mailto:' + email, '_blank')}
+						>
+							<Email />
+						</IconButton>
+						<IconButton aria-label="full screen">
+							<DrawingModal imageUrl={imageUrl} />
+						</IconButton>
+					</div>
+				</CardActions>
+				<Collapse in={showComments} timeout="auto" unmountOnExit>
+					<CardContent>
+						<CommentsList docId={docId} />
+						{user && <CommentForm docId={docId} />}
+					</CardContent>
+				</Collapse>
+			</Card>
+		</>
 	);
 };
 

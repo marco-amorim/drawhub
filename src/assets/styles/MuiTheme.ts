@@ -86,5 +86,11 @@ export const MuiTheme = createMuiTheme({
 				alignItems: 'center',
 			},
 		},
+
+		MuiButton: {
+			textPrimary: {
+				color: 'var(--blue-light)',
+			},
+		},
 	},
 });
