@@ -5,12 +5,13 @@ const updateLikes = async (userId: string, docId: string) => {
 	const firestore = firebase.firestore();
 	const postsRef = firestore.collection('posts');
 	const docRef = postsRef.doc(docId);
+	const likedBy = (await docRef.get()).get('likedBy');
 
 	if (!userId) {
 		return false;
 	}
 
-	if ((await docRef.get()).get('likedBy').includes(userId)) {
+	if (likedBy.includes(userId)) {
 		await docRef.update({
 			likedBy: firebase.firestore.FieldValue.arrayRemove(userId),
 			likes: firebase.firestore.FieldValue.increment(-1),

@@ -5,9 +5,9 @@ const getCommentsCount = async (docId: string) => {
 	const firestore = firebase.firestore();
 	const postsRef = firestore.collection('posts');
 	const docRef = postsRef.doc(docId);
-	const comments = (await docRef.get()).get('commentsCount');
+	const commentsCount = (await docRef.get()).get('commentsCount');
 
-	return comments;
+	return commentsCount;
 };
 
 export default getCommentsCount;

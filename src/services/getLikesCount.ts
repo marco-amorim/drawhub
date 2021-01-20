@@ -5,9 +5,9 @@ const getLikesCount = async (docId: string) => {
 	const firestore = firebase.firestore();
 	const postsRef = firestore.collection('posts');
 	const docRef = postsRef.doc(docId);
-	const likes = (await docRef.get()).get('likes');
+	const likesCount = (await docRef.get()).get('likes');
 
-	return likes;
+	return likesCount;
 };
 
 export default getLikesCount;

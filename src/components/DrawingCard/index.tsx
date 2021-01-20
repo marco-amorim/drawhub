@@ -83,26 +83,23 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 	const [liked, setLiked] = useState(false);
 	const [likesCount, setLikesCount] = useState(0);
 	const [commentsCount, setCommentsCount] = useState(0);
-
-	const [showComments, setShowComments] = React.useState(false);
+	const [showComments, setShowComments] = useState(false);
 
 	useEffect(() => {
 		async function initialLikeState() {
 			setLiked(await getLikesInitialState(user?.uid, docId));
 		}
 
-		initialLikeState();
-
 		async function initialLikesCount() {
 			setLikesCount(await getLikesCount(docId));
 		}
-
-		initialLikesCount();
 
 		async function initialCommentsCount() {
 			setCommentsCount(await getCommentsCount(docId));
 		}
 
+		initialLikeState();
+		initialLikesCount();
 		initialCommentsCount();
 	});
 
