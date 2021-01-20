@@ -7,7 +7,7 @@ const Landing = () => {
 		<React.Fragment>
 			<h3>Embrace your creativity</h3>
 			<LandingStyles>
-				<LandingImage src={landingImage} alt="At" />
+				<LandingImage src={landingImage} alt="art" />
 			</LandingStyles>
 		</React.Fragment>
 	);

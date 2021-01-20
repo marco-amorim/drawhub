@@ -102,7 +102,7 @@ const Menu: React.FC<MenuProps> = ({ photoURL }) => {
 					aria-haspopup="true"
 					onClick={handleToggle}
 				>
-					<img src={photoURL} alt="Menu" />
+					<img src={photoURL} alt="menu" />
 					<ArrowDropDown />
 				</MenuTrigger>
 				<Popper

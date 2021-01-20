@@ -58,7 +58,7 @@ const DrawingModal: React.FC<DrawingModalProps> = ({ imageUrl }) => {
 						<IconButton className={classes.closeButton} onClick={handleClose}>
 							<Close style={{ color: 'var(--green' }} />
 						</IconButton>
-						<img src={imageUrl} alt="Drawing" />
+						<img src={imageUrl} alt="drawing" />
 					</div>
 				</Fade>
 			</Modal>
