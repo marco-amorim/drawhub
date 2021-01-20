@@ -11,7 +11,7 @@ import {
 } from '@material-ui/core';
 import { Delete } from '@material-ui/icons';
 import React from 'react';
-import firebase from 'firebase/app';
+import deleteComment from '../../services/deleteComment';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -29,19 +29,17 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface CommentProps {
-	createdAt: firebase.firestore.Timestamp;
-	displayName: string;
-	photoURL: string;
-	text: string;
+	comment: any;
+	docId: string;
 }
 
-const Comment: React.FC<CommentProps> = ({
-	createdAt,
-	displayName,
-	photoURL,
-	text,
-}) => {
+const Comment: React.FC<CommentProps> = ({ comment, docId }) => {
 	const classes = useStyles();
+	const { createdAt, photoURL, displayName, text } = comment;
+
+	const handleDelete = async () => {
+		await deleteComment(comment, docId);
+	};
 
 	return (
 		<>
@@ -54,7 +52,7 @@ const Comment: React.FC<CommentProps> = ({
 				</ListItemAvatar>
 				<ListItemText primary={displayName} secondary={text} />
 				<ListItemIcon>
-					<IconButton>
+					<IconButton onClick={handleDelete}>
 						<Delete />
 					</IconButton>
 				</ListItemIcon>

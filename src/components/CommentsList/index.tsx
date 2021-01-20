@@ -45,12 +45,7 @@ const CommentsList: React.FC<CommentsListProps> = ({ docId }) => {
 			return commentsArray.map((comment: any, index: number) => {
 				return (
 					<React.Fragment key={index}>
-						<Comment
-							text={comment.text}
-							createdAt={comment.createdAt}
-							displayName={comment.displayName}
-							photoURL={comment.photoURL}
-						/>
+						<Comment comment={comment} docId={docId} />
 						<Divider variant="inset" component="li" />
 					</React.Fragment>
 				);
