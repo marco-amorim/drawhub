@@ -20,6 +20,8 @@
 - Login system with Google Auth
 - Send e-mails to any artist you want
 - Likes system on all posts
+- Comments system on all posts
+- Delete your comments
 - Post any drawing you want, just providing the URL
 - Post other person's drawings, providing their name and e-mail address
 - Delete your posts
