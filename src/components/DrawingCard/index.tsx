@@ -88,6 +88,7 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 	const [commentsCount, setCommentsCount] = useState(0);
 	const [showComments, setShowComments] = useState(false);
 	const [showDeleteModal, setShowDeleteModal] = useState(false);
+	const [isLikeEnabled, setIsLikeEnabled] = useState(true);
 
 	useEffect(() => {
 		async function initialLikeState() {
@@ -119,7 +120,11 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 	};
 
 	const handleLikes = async () => {
-		setLiked(await updateLikes(user?.uid, docId));
+		setIsLikeEnabled(false);
+		await updateLikes(user?.uid, docId).then((res) => {
+			setLiked(res);
+			setIsLikeEnabled(true);
+		});
 	};
 
 	return (
@@ -156,7 +161,11 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 					Created by: {author}
 				</CardContent>
 				<CardActions disableSpacing>
-					<IconButton aria-label="add to favorites" onClick={handleLikes}>
+					<IconButton
+						aria-label="add to favorites"
+						onClick={handleLikes}
+						style={{ pointerEvents: isLikeEnabled ? 'unset' : 'none' }}
+					>
 						{liked ? <Favorite /> : <FavoriteBorder />}
 					</IconButton>
 					{likesCount}
