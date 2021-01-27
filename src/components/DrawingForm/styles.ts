@@ -22,8 +22,6 @@ export const FormikInput = styled(FormikField)`
 export const MuiButton = styled(Button)`
 	&& {
 		margin-top: 2rem;
-		width: 190px !important;
-		height: 45px;
 		border: none;
 		cursor: pointer;
 		background-color: var(--blue);
