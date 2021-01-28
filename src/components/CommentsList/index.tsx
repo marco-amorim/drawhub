@@ -6,7 +6,7 @@ import {
 	Theme,
 } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
-import getComments from '../../services/getComments';
+import getComments from '../../services/comments/getComments';
 import Comment from '../Comment';
 
 interface CommentsListProps {

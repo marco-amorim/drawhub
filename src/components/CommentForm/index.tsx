@@ -3,7 +3,7 @@ import { AddComment } from '@material-ui/icons';
 import { Form, Formik, FormikValues } from 'formik';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import createComment from '../../services/createComment';
+import createComment from '../../services/comments/createComment';
 import { getAuth } from '../../services/firebase';
 import FormikField from '../FormikField';
 

@@ -12,10 +12,10 @@ import DrawingModal from '../DrawingModal';
 import firebase from 'firebase/app';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from '../../services/firebase';
-import deleteDrawing from '../../services/deleteDrawing';
-import updateLikes from '../../services/updateLikes';
-import getLikes from '../../services/getLikes';
-import getLikesCount from '../../services/getLikesCount';
+import deleteDrawing from '../../services/drawings/deleteDrawing';
+import updateLikes from '../../services/likes/updateLikes';
+import isLikedBy from '../../services/likes/isLikedBy';
+import getLikesCount from '../../services/likes/getLikesCount';
 import {
 	Collapse,
 	Card,
@@ -28,7 +28,7 @@ import {
 } from '@material-ui/core';
 import CommentForm from '../CommentForm';
 import CommentsList from '../CommentsList';
-import getCommentsCount from '../../services/getCommentsCount';
+import getCommentsCount from '../../services/comments/getCommentsCount';
 import ActionModal from '../ActionModal';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -92,7 +92,7 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 
 	useEffect(() => {
 		async function initialLikeState() {
-			setLiked(await getLikes(user?.uid, docId));
+			setLiked(await isLikedBy(user?.uid, docId));
 		}
 
 		async function initialLikesCount() {

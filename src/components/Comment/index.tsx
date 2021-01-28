@@ -12,7 +12,7 @@ import {
 import { Delete } from '@material-ui/icons';
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import deleteComment from '../../services/deleteComment';
+import deleteComment from '../../services/comments/deleteComment';
 import { getAuth } from '../../services/firebase';
 import ActionModal from '../ActionModal';
 

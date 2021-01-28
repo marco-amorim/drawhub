@@ -4,7 +4,7 @@ import { FormikValues, Formik } from 'formik';
 
 import { MuiButton, FormikInput, FormikForm } from './styles';
 import { useHistory } from 'react-router-dom';
-import createDrawing from '../../services/createDrawing';
+import createDrawing from '../../services/drawings/createDrawing';
 import { getAuth } from '../../services/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import LoadingSpinner from '../LoadingSpinner';
