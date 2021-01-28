@@ -57,10 +57,10 @@ const ActionModal: React.FC<ActionModalProps> = ({
 				</DialogContent>
 				<DialogActions>
 					<Button onClick={handleClose} color="primary">
-						Disagree
+						No
 					</Button>
 					<Button onClick={handleAction} color="primary">
-						Agree
+						Yes
 					</Button>
 				</DialogActions>
 			</Dialog>
