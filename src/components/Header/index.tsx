@@ -4,17 +4,18 @@ import {
 	HeaderTitle,
 	HeaderButton,
 } from './styles';
-import { getAuth, signInWithGoogle } from '../../services/auth';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { signInWithGoogle } from '../../services/auth';
 import Menu from '../Menu';
 import LoadingSpinner from '../LoadingSpinner';
+import { useContext } from 'react';
+import { UserContext } from '../../context/UserContext';
 
 const Header = () => {
-	const [user, loading] = useAuthState(getAuth());
+	const { user, loading } = useContext(UserContext);
 
 	const renderMenu = () => {
 		if (user) {
-			return <Menu photoURL={user.photoURL} />;
+			return <Menu photoURL={user.photoURL || ''} />;
 		}
 
 		return <HeaderButton onClick={signInWithGoogle}>Login</HeaderButton>;

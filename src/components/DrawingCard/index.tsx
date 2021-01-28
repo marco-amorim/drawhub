@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import {
 	Delete,
@@ -10,8 +10,6 @@ import {
 } from '@material-ui/icons';
 import DrawingModal from '../DrawingModal';
 import firebase from 'firebase/app';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { getAuth } from '../../services/auth';
 import deleteDrawing from '../../services/drawings/deleteDrawing';
 import updateLikes from '../../services/likes/updateLikes';
 import isLikedBy from '../../services/likes/isLikedBy';
@@ -30,6 +28,7 @@ import CommentForm from '../CommentForm';
 import CommentsList from '../CommentsList';
 import getCommentsCount from '../../services/comments/getCommentsCount';
 import ActionModal from '../ActionModal';
+import { UserContext } from '../../context/UserContext';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -82,7 +81,7 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 	editMode,
 }) => {
 	const classes = useStyles();
-	const [user] = useAuthState(getAuth());
+	const { user } = useContext(UserContext);
 	const [liked, setLiked] = useState(false);
 	const [likesCount, setLikesCount] = useState(0);
 	const [commentsCount, setCommentsCount] = useState(0);
@@ -92,7 +91,7 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 
 	useEffect(() => {
 		async function initialLikeState() {
-			setLiked(await isLikedBy(user?.uid, docId));
+			user && setLiked(await isLikedBy(user.uid, docId));
 		}
 
 		async function initialLikesCount() {
@@ -121,10 +120,11 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 
 	const handleLikes = async () => {
 		setIsLikeEnabled(false);
-		await updateLikes(user?.uid, docId).then((res) => {
-			setLiked(res);
-			setIsLikeEnabled(true);
-		});
+		user &&
+			(await updateLikes(user.uid, docId).then((res) => {
+				setLiked(res);
+				setIsLikeEnabled(true);
+			}));
 	};
 
 	return (
