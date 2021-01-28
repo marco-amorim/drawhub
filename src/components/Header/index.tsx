@@ -4,7 +4,7 @@ import {
 	HeaderTitle,
 	HeaderButton,
 } from './styles';
-import { getAuth, signInWithGoogle } from '../../services/firebase';
+import { getAuth, signInWithGoogle } from '../../services/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Menu from '../Menu';
 import LoadingSpinner from '../LoadingSpinner';

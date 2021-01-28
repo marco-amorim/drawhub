@@ -5,7 +5,7 @@ import { useCollectionDataOnce } from 'react-firebase-hooks/firestore';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { getAuth } from '../../services/firebase';
+import { getAuth } from '../../services/auth';
 import LoadingSpinner from '../../components/LoadingSpinner';
 
 const UserDrawings = () => {

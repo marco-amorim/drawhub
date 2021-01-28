@@ -13,7 +13,7 @@ import { Delete } from '@material-ui/icons';
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import deleteComment from '../../services/comments/deleteComment';
-import { getAuth } from '../../services/firebase';
+import { getAuth } from '../../services/auth';
 import ActionModal from '../ActionModal';
 
 const useStyles = makeStyles((theme: Theme) =>

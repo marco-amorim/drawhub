@@ -10,7 +10,7 @@ import {
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { ArrowDropDown } from '@material-ui/icons';
 import { MenuTrigger } from './styles';
-import { signOut } from '../../services/firebase';
+import { signOut } from '../../services/auth';
 import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) =>

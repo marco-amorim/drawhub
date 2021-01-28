@@ -4,7 +4,7 @@ import { Form, Formik, FormikValues } from 'formik';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import createComment from '../../services/comments/createComment';
-import { getAuth } from '../../services/firebase';
+import { getAuth } from '../../services/auth';
 import FormikField from '../FormikField';
 
 const useStyles = makeStyles((theme: Theme) =>
