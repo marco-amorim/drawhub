@@ -24,14 +24,10 @@ export const getAuth = () => {
 };
 
 export const signInWithGoogle = () => {
-	const auth = firebase.auth();
-
 	const provider = new firebase.auth.GoogleAuthProvider();
-	auth.signInWithPopup(provider);
+	firebase.auth().signInWithPopup(provider);
 };
 
 export const signOut = () => {
-	const auth = firebase.auth();
-
-	return auth.signOut();
+	firebase.auth().signOut();
 };
