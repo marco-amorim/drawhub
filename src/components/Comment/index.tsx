@@ -10,10 +10,11 @@ import {
 	createStyles,
 } from '@material-ui/core';
 import { Delete } from '@material-ui/icons';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import deleteComment from '../../services/comments/deleteComment';
+import { getAuth } from '../../services/auth';
 import ActionModal from '../ActionModal';
-import { UserContext } from '../../context/UserContext';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -38,7 +39,7 @@ interface CommentProps {
 const Comment: React.FC<CommentProps> = ({ comment, docId }) => {
 	const classes = useStyles();
 	const { createdAt, photoURL, displayName, text, uid } = comment;
-	const { user } = useContext(UserContext);
+	const [user] = useAuthState(getAuth());
 	const [showDeleteModal, setShowDeleteModal] = useState(false);
 
 	const handleDelete = async () => {

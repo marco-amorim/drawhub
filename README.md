@@ -10,7 +10,6 @@
 
 - React
 - Firebase
-- Context API
 - Styled-Components
 - Material-UI
 - TypeScript

@@ -1,18 +1,19 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import DrawingCard from '../../components/DrawingCard';
 import { DrawingsContainer } from '../../assets/styles/DrawingsContainer';
 import { useCollectionDataOnce } from 'react-firebase-hooks/firestore';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { getAuth } from '../../services/auth';
 import LoadingSpinner from '../../components/LoadingSpinner';
-import { UserContext } from '../../context/UserContext';
 
 const UserDrawings = () => {
 	const firestore = firebase.firestore();
 	const postsRef = firestore.collection('posts');
 	const query = postsRef.orderBy('createdAt');
 	const [posts] = useCollectionDataOnce(query, { idField: 'id' });
-	const { user, loading } = useContext(UserContext);
+	const [user, loading] = useAuthState(getAuth());
 
 	const renderTitle = () => {
 		if (user) {
