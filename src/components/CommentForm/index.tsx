@@ -1,11 +1,10 @@
 import { createStyles, IconButton, makeStyles, Theme } from '@material-ui/core';
 import { AddComment } from '@material-ui/icons';
 import { Form, Formik, FormikValues } from 'formik';
-import React from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import React, { useContext } from 'react';
 import createComment from '../../services/comments/createComment';
-import { getAuth } from '../../services/auth';
 import FormikField from '../FormikField';
+import { UserContext } from '../../context/UserContext';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -28,15 +27,17 @@ const initialValues: CommentFormValues = {
 };
 
 const CommentForm: React.FC<CommentFormProps> = ({ docId }) => {
-	const [user] = useAuthState(getAuth());
+	const { user } = useContext(UserContext);
 	const classes = useStyles();
 
 	const handleSubmit = (values: FormikValues, actions: any) => {
-		const { uid, photoURL, displayName } = user;
-		const formValues = { ...values, displayName, uid, photoURL };
-		createComment(formValues, docId);
+		if (user) {
+			const { uid, photoURL, displayName } = user;
+			const formValues = { ...values, displayName, uid, photoURL };
+			createComment(formValues, docId);
 
-		actions.resetForm({});
+			actions.resetForm({});
+		}
 	};
 
 	return (

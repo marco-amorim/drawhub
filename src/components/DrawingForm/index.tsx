@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import * as Yup from 'yup';
 import { FormikValues, Formik } from 'formik';
 
 import { MuiButton, FormikInput, FormikForm } from './styles';
 import { useHistory } from 'react-router-dom';
 import createDrawing from '../../services/drawings/createDrawing';
-import { getAuth } from '../../services/auth';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import LoadingSpinner from '../LoadingSpinner';
+import { UserContext } from '../../context/UserContext';
 
 interface FormValues {
 	title: string;
@@ -37,14 +36,16 @@ const CreateDrawingSchema = Yup.object().shape({
 const DrawingForm: React.FC = () => {
 	const history = useHistory();
 
-	const [user, loading] = useAuthState(getAuth());
+	const { user, loading } = useContext(UserContext);
 
 	const handleSubmit = (values: FormikValues) => {
-		const { uid, photoURL } = user;
-		const formValues = { ...values, uid, photoURL };
-		createDrawing(formValues);
+		if (user) {
+			const { uid, photoURL } = user;
+			const formValues = { ...values, uid, photoURL };
+			createDrawing(formValues);
 
-		history.push('/');
+			history.push('/');
+		}
 	};
 
 	const renderForm = () => {
