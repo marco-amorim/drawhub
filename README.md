@@ -4,7 +4,7 @@
 
 ## Production
 
-- https://drawhub.marcoamorim.com/
+- https://drawhub.marcoamorim.com
 
 ## Technologies
 
