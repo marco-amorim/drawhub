@@ -33,9 +33,16 @@ import { UserContext } from '../../context/UserContext';
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		root: {
-			width: 345,
 			backgroundColor: 'var(--shape-hover)',
 			margin: '11px',
+
+			'@media (min-width: 1200px)': {
+				width: 345,
+			},
+
+			'@media (max-width: 1200px)': {
+				width: 440,
+			},
 
 			'@media (max-width: 767px)': {
 				width: 310,
