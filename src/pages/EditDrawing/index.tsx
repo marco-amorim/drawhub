@@ -15,7 +15,7 @@ const EditDrawing = () => {
 	const [initialTitle, setInitialTitle] = useState<string>('');
 	const [initialEmail, setInitialEmail] = useState<string>('');
 	const [initialImageUrl, setInitialImageUrl] = useState<string>('');
-	const [drawingId] = useState(window.location.pathname.substr(12));
+	const [drawingId] = useState<string>(window.location.pathname.substr(12));
 
 	useEffect(() => {
 		async function fetchDrawing() {
