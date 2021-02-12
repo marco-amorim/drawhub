@@ -2,6 +2,7 @@ import { FormikValues } from 'formik';
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import DrawingForm from '../../components/DrawingForm';
+import InfoModal from '../../components/InfoModal';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import { UserContext } from '../../context/UserContext';
 import getDrawing from '../../services/drawings/getDrawing';
@@ -16,6 +17,7 @@ const EditDrawing = () => {
 	const [initialEmail, setInitialEmail] = useState<string>('');
 	const [initialImageUrl, setInitialImageUrl] = useState<string>('');
 	const [drawingId] = useState<string>(window.location.pathname.substr(12));
+	const [showInfoModal, setShowInfoModal] = useState(false);
 
 	useEffect(() => {
 		async function fetchDrawing() {
@@ -36,11 +38,15 @@ const EditDrawing = () => {
 		try {
 			const { title, author, imageUrl, email } = values;
 			updateDrawing(drawingId, author, imageUrl, title, email);
-			alert('Drawing updated successfully');
-			history.push('/posts/edit');
+			setShowInfoModal(true);
 		} catch (error) {
 			console.log('Error trying to update post, error: ' + error);
 		}
+	};
+
+	const handleCloseModal = () => {
+		setShowInfoModal(false);
+		history.push('/posts/edit');
 	};
 
 	const renderForm = () => {
@@ -75,6 +81,14 @@ const EditDrawing = () => {
 
 	return (
 		<>
+			{showInfoModal && (
+				<InfoModal
+					currentState={showInfoModal}
+					description="Your drawing was successfully updated!"
+					title="Drawing Updated"
+					onCallback={handleCloseModal}
+				/>
+			)}
 			{loading ? <LoadingSpinner height="80px" width="80px" /> : renderForm()}
 		</>
 	);
