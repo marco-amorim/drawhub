@@ -3,49 +3,55 @@ import * as Yup from 'yup';
 import { FormikValues, Formik } from 'formik';
 
 import { MuiButton, FormikInput, FormikForm } from './styles';
-import { useHistory } from 'react-router-dom';
-import createDrawing from '../../services/drawings/createDrawing';
 import LoadingSpinner from '../LoadingSpinner';
 import { UserContext } from '../../context/UserContext';
 
-interface FormValues {
-	title: string;
-	author: string;
-	imageUrl: string;
-	email: string;
+interface DrawingFormProps {
+	formTitle: string;
+	onSubmit: (values: FormikValues) => void;
+	initialTitle: string;
+	initialAuthor: string;
+	initialImageUrl: string;
+	initialEmail: string;
 }
 
-const initialValues: FormValues = {
-	title: '',
-	author: '',
-	imageUrl: '',
-	email: '',
-};
-
-const CreateDrawingSchema = Yup.object().shape({
-	title: Yup.string().required('This field is required'),
-	author: Yup.string().required('This field is required'),
-	imageUrl: Yup.string()
-		.url('Invalid URL format')
-		.required('This field is required'),
-	email: Yup.string()
-		.email('Invalid e-mail format')
-		.required('This field is required'),
-});
-
-const DrawingForm: React.FC = () => {
-	const history = useHistory();
-
+const DrawingForm: React.FC<DrawingFormProps> = ({
+	formTitle,
+	onSubmit,
+	initialTitle,
+	initialAuthor,
+	initialImageUrl,
+	initialEmail,
+}) => {
 	const { user, loading } = useContext(UserContext);
 
-	const handleSubmit = (values: FormikValues) => {
-		if (user) {
-			const { uid, photoURL } = user;
-			const formValues = { ...values, uid, photoURL };
-			createDrawing(formValues);
+	interface FormValues {
+		title: string;
+		author: string;
+		imageUrl: string;
+		email: string;
+	}
 
-			history.push('/');
-		}
+	const initialValues: FormValues = {
+		title: initialTitle,
+		author: initialAuthor,
+		imageUrl: initialImageUrl,
+		email: initialEmail,
+	};
+
+	const CreateDrawingSchema = Yup.object().shape({
+		title: Yup.string().required('This field is required'),
+		author: Yup.string().required('This field is required'),
+		imageUrl: Yup.string()
+			.url('Invalid URL format')
+			.required('This field is required'),
+		email: Yup.string()
+			.email('Invalid e-mail format')
+			.required('This field is required'),
+	});
+
+	const handleSubmit = (values: FormikValues) => {
+		onSubmit(values);
 	};
 
 	const renderForm = () => {
@@ -78,10 +84,10 @@ const DrawingForm: React.FC = () => {
 
 	const renderTitle = () => {
 		if (user) {
-			return <h3>Create your post</h3>;
+			return <h3>{formTitle}</h3>;
 		}
 
-		return <h3>You need to be logged in for this :/</h3>;
+		return <h3>You need to be logged in for this</h3>;
 	};
 
 	return (

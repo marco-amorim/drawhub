@@ -7,6 +7,7 @@ import {
 	Favorite,
 	InsertComment,
 	InsertCommentOutlined,
+	Edit,
 } from '@material-ui/icons';
 import DrawingModal from '../DrawingModal';
 import firebase from 'firebase/app';
@@ -134,6 +135,10 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 			}));
 	};
 
+	const handleEdit = () => {
+		window.location.href = '/posts/edit/' + String(docId);
+	};
+
 	return (
 		<>
 			{showDeleteModal && (
@@ -151,12 +156,17 @@ const DrawingCard: React.FC<DrawingCardProps> = ({
 					avatar={<Avatar src={photoUrl} aria-label="user photo" />}
 					action={
 						editMode && (
-							<IconButton
-								aria-label="delete"
-								onClick={() => setShowDeleteModal(true)}
-							>
-								<Delete />
-							</IconButton>
+							<>
+								<IconButton aria-label="edit" onClick={handleEdit}>
+									<Edit />
+								</IconButton>
+								<IconButton
+									aria-label="delete"
+									onClick={() => setShowDeleteModal(true)}
+								>
+									<Delete />
+								</IconButton>
+							</>
 						)
 					}
 					title={title}

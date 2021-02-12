@@ -25,6 +25,7 @@
 - Delete comments
 - Post drawings providing the image URL
 - Delete posts
+- Edit posts
 
 <div style="text-align:center;">
   <img src="https://raw.githubusercontent.com/marco-amorim/drawhub/master/src/assets/images/landing.svg">
