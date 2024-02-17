@@ -4,7 +4,6 @@
 
 ## Production
 
-- https://drawhub.marcoamorim.com
 - https://drawhub.vercel.app
 
 ## Technologies
